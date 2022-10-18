@@ -1,0 +1,130 @@
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: agave;
+    src: url('./../../public/fonts/Agave-Regular.ttf'); 
+}
+
+@font-face {
+    font-family: agave-bold;
+    src: url('./../../public/fonts/Agave-Bold.ttf'); 
+    font-weight: bold;
+}
+
+.theme-1 {
+    --normal-text: #111;
+    --bold-text: #0a0a0a;
+    /* --taskbar-bg: #faf6b9; */
+    --taskbar-bg: #f99ea3;
+    --taskbar-border: #743337; 
+    --menuButton-bg: #fca7ac;
+    --menuButton-border-top: #b76e73;
+    --menuButton-border-bottom: #743337;
+    /* --menu-hover: #fa8086; */
+    --menu-hover: #fd787e;
+}
+
+html {
+    font-size: 62.5%;
+    background-color: #000;
+}
+
+body {
+    min-height: 100vh;
+    width: 100%;
+    background-image: url("./../../public/assets/landscape.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: agave, monospace;
+}
+
+#root {
+    height: 100vh;
+    width: 100%;
+}
+
+#taskbar {
+    height: 35px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background-color: var(--taskbar-bg);
+    font-family: agave, monospace;
+    border-bottom: 2px solid var(--taskbar-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2px;
+}
+
+#menuButton {
+    height: 90%;
+    padding: 0 15px;
+    background-color: var(--menuButton-bg);
+    border: 2px solid var(--menuButton-border-top);
+    border-bottom: 2px solid var(--menuButton-border-bottom);
+    border-right: 2px solid var(--menuButton-border-bottom);
+    font-size: 1.7rem;
+    font-family: agave-bold, monospace;
+}
+
+#menuButton.active {
+    border: 2px solid var(--menuButton-border-bottom);
+    border-bottom: 2px solid var(--menuButton-border-top);
+    border-right: 2px solid var(--menuButton-border-top);
+}
+
+#menu {
+    position: absolute;
+    top: 35px;
+    left: 0;
+    width: 280px;
+    height: fit-content;
+    background-color: var(--taskbar-bg);
+    display: none;
+    border: 2px solid var(--menuButton-border-top);
+    border-bottom: 2px solid var(--menuButton-border-bottom);
+    border-right: 2px solid var(--menuButton-border-bottom);
+}
+
+#menu li {
+    padding: 10px;
+    font-size: 1.6rem;
+    border-bottom: 1px solid var(--menuButton-border-bottom);
+}
+
+#menu li:last-child {
+    border-bottom: none;
+}
+
+#menu li:hover {
+    background-color: var(--menu-hover);
+}
+
+#batteryElement {
+    font-size: 2rem;
+    font-weight: lighter;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-right: 15px;
+}
+
+#batteryPerc {
+    font-size: 1.6rem;
+    padding-left: 5px;
+}
+
+#charging {
+    font-size: 1.2rem;
+    padding-right: 2px;
+}
+
+
+

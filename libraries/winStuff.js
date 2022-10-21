@@ -1,6 +1,22 @@
 /* 
     ? Aviral Singh Chauhan, 10/2022
+
+    ./\,,/\.
+    (=o_o=)
+    """©""
+    ( U U )~~*
+
+         __
+    .___(.)< (MEOW)
+    \_____)
+~~~~~~~~~~~~~~~~~~~~~~
+
 */
+
+var alertCount = 0;
+var windowCount = 0;
+var windowToDrag = null;
+var activeWindow = null;
 
 /**
  *
@@ -40,76 +56,83 @@ function hideMenu() {
 }
 
 /**
- * @brief fetches the client battery and displays it onto the taskbar in real time
+ *
+ * @param {String} text Text of the alert
+ * @param {String} titleText title text for the alert box
+ * @param {Integer} h height in vh for the text box
+ * @param {Integer} w width in vw for the text box
+ * @param {Integer} z z Index for the text box
  */
-function getBattery() {
-  let batteryElement = document.createElement("div");
-  batteryElement.id = "batteryElement";
-  navigator.getBattery().then((bat) => {
-    const { level, onlevelchange, charging } = bat;
+function createAlert(text, titleText, h, w, z) {
+  alertCount++;
+  const currentAlertId = `alert-${alertCount}`;
+  const alert = document.createElement("div");
+  alert.id = currentAlertId;
+  alert.classList.add("alert");
+  alert.style.height = h + "vh";
+  alert.style.width = w + "vw";
+  alert.style.zIndex = z;
 
-    // Check if chargin
-    if (charging) {
-      const i = document.createElement("i");
-      i.id = "charging";
-      i.classList.add("fa");
-      i.classList.add("fa-solid");
-      i.classList.add("fa-plug");
+  const alertTitleBar = document.createElement("div");
+  alertTitleBar.classList.add("alert-title");
+  alertTitleBar.classList.add("flex-center");
+  alertTitleBar.innerText = titleText;
 
-      batteryElement.appendChild(i);
-    }
+  const alertClose = document.createElement("img");
+  alertClose.classList.add("close-btn");
+  alertClose.src = "./../public/assets/xmark-solid.svg";
+  alertClose.alt = "Cross Button Image";
 
-    // Check battery Levels
-    const i = document.createElement("i");
-    i.id = "batteryIcon";
-    i.classList.add("fa");
-    i.classList.add("fa-solid");
+  const alertBody = document.createElement("div");
+  alertBody.classList.add("alert-body");
+  alertBody.classList.add("flex-center-column");
 
-    if (level * 100 == 100) {
-      i.classList.add("fa-battery-three-quarters");
-    } else if (level * 100 < 100 && level * 100 >= 75) {
-      i.classList.add("fa-battery-full");
-    } else if (level * 100 < 75 && level * 100 >= 50) {
-      i.classList.add("fa-battery-half");
-    } else if (level * 100 < 50 && level * 100 >= 0) {
-      i.classList.add("fa-battery-quarter");
-    }
+  alertTitleBar.appendChild(alertClose);
 
-    batteryElement.appendChild(i);
+  alertBody.innerText = text;
 
-    // Show Battery %
-    const batteryPerc = document.createElement("div");
-    batteryPerc.id = "batteryPerc";
-    batteryPerc.innerText = `${Math.floor(level * 100)}%`;
-    batteryElement.appendChild(batteryPerc);
+  const alertButton = document.createElement("button");
+  alertButton.type = "button";
+  alertButton.classList.add("primary-button");
+  alertButton.style.marginTop = "20px";
+  alertButton.innerText = "Ok";
 
-    // Alert When Low
-    let hasAlerted = false;
-    bat.onlevelchange = (bat2) => {
-      updateBattery(bat2.currentTarget.level);
-      if (level * 100 <= 20 && !hasAlerted) {
-        hasAlerted = true;
-        const alert = document.createElement("div");
-        alert.id = "batteryAlert";
-        alert.innerText = "Battery Low! Please plug in the charger!";
+  alertButton.onclick = function () {
+    destroyAlert(currentAlertId);
+  };
+  alertClose.onclick = function () {
+    destroyAlert(currentAlertId);
+  };
 
-        document.body.appendChild(alert);
-      }
-    };
-  });
+  alertBody.appendChild(alertButton);
+  alert.appendChild(alertTitleBar);
+  alert.appendChild(alertBody);
+  document.body.appendChild(alert);
 
-  document.getElementById("taskbar").appendChild(batteryElement);
+  const random = getRandomWindowPosition();
+
+  alert.style.top = random[1] + "px";
+  alert.style.left = random[0] + "px";
 }
 
 /**
  *
- * @param {float} level tells how much batter is currently present b/w 0 and 1
+ * @param {Integer} id unique id of the window to destroy
  */
-function updateBattery(level) {
-  document.getElementById("batteryPerc").innerText = `${level * 100}%`;
+function destroyAlert(id) {
+  document.getElementById(id).remove();
+  alertCount--;
 }
 
-function createAlert(text, h, w) {}
+function getRandomWindowPosition() {
+  let xOrigin = window.innerWidth - window.innerWidth * 0.7;
+  let yOrigin = window.innerHeight - window.innerHeight * 0.7;
+
+  let randomX = Math.floor(Math.random() * (xOrigin + 100 - xOrigin) + xOrigin);
+  let randomY = Math.floor(Math.random() * (yOrigin + 100 - yOrigin) + yOrigin);
+
+  return [randomX, randomY];
+}
 
 function createTaskBar() {
   const taskbar = document.createElement("div");
@@ -139,4 +162,6 @@ window.onload = function () {
   appendMenuElement("Resume", logDummy);
   appendMenuElement("Credits", logDummy);
   getBattery();
+
+  createAlert("Hello", "Alert", 20, 40, 10);
 };

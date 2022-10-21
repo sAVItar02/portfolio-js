@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    cursor: default;
 }
 
 @font-face {
@@ -21,11 +24,17 @@
     /* --taskbar-bg: #faf6b9; */
     --taskbar-bg: #f99ea3;
     --taskbar-border: #743337; 
+
     --menuButton-bg: #fca7ac;
     --menuButton-border-top: #b76e73;
     --menuButton-border-bottom: #743337;
     /* --menu-hover: #fa8086; */
     --menu-hover: #fd787e;
+    
+    --window-body-color: #f5c9cb;
+    --title-bar-color: #664fc6;
+    --window-border-color: #060c1b;
+    --window-shadow-color: #111111;
 }
 
 html {
@@ -40,12 +49,47 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     font-family: agave, monospace;
+    position: relative;
+    overflow: hidden;
 }
 
 #root {
     height: 100vh;
     width: 100%;
 }
+
+/* ------------------------- UTILITY CLASSES -------------------------- */
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-center-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.primary-button {
+    outline: transparent;
+    background-color: var(--menuButton-bg);
+    border: 2px solid var(--menuButton-border-top);
+    border-bottom: 2px solid var(--menuButton-border-bottom);
+    border-right: 2px solid var(--menuButton-border-bottom);
+    font-size: 1.7rem;
+    font-family: agave-bold, monospace;
+    padding: 5px 15px;
+}
+
+.primary-button:focus {
+    border: 2px solid var(--menuButton-border-bottom);
+    border-bottom: 2px solid var(--menuButton-border-top);
+    border-right: 2px solid var(--menuButton-border-top);
+}
+
+/* -------------------------------------------------------------------- */
 
 #taskbar {
     height: 35px;
@@ -116,15 +160,56 @@ body {
     margin-right: 15px;
 }
 
+#batteryIcon {
+    height: 22px;
+}
+
 #batteryPerc {
     font-size: 1.6rem;
     padding-left: 5px;
 }
 
 #charging {
-    font-size: 1.2rem;
+    height: 15px;
     padding-right: 2px;
 }
 
+.alert {
+    position: absolute;
+    background-color: var(--window-body-color);
+    color: var(--taskbar-bg);
+    padding-top: 20px;
+    box-shadow: 5px 5px 0px var(--window-shadow-color);
+}
+
+.alert-title {
+    position: inherit;
+    background-color: var(--title-bar-color);
+    border: 2px solid var(--window-border-color);
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 25px;
+    font-size: 1.6rem;
+    font-family: agave-bold, monospace;
+    color: var(--normal-text);
+    cursor: default;
+}
+
+.alert-body {
+    height: 100%;
+    width: 100%;
+    border: 2px solid var(--window-border-color);
+    border-top: 0;
+    color: var(--normal-text);
+    font-size: 1.8rem;
+}
+
+.close-btn {
+    height: 18px;
+    width: auto;
+    position: inherit;
+    right: 5px;
+}
 
 

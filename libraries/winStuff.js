@@ -29,6 +29,9 @@ function appendMenuElement(text, handler) {
   const menuItem = document.createElement("li");
   menuItem.classList.add("menu-item");
   menuItem.innerText = text;
+  menuItem.onmouseover = function () {
+    playHover();
+  };
   menuItem.onclick = function () {
     toggleMenu();
     handler();
@@ -99,10 +102,12 @@ function createAlert(text, titleText, h, w, z) {
 
   alertButton.onclick = function () {
     destroyAlert(currentAlertId);
+    playClick();
   };
 
   alertClose.onclick = function () {
     destroyAlert(currentAlertId);
+    playClose();
   };
 
   alertTitleBar.onmousedown = function (e) {
@@ -150,6 +155,7 @@ function createTaskBar() {
 
   menuButton.onclick = function () {
     toggleMenu();
+    playClick();
   };
 
   taskbar.appendChild(menuButton);

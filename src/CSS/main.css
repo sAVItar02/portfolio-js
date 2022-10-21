@@ -5,6 +5,7 @@
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     cursor: default;
+    user-select: none;
 }
 
 @font-face {

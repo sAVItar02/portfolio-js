@@ -100,8 +100,13 @@ function createAlert(text, titleText, h, w, z) {
   alertButton.onclick = function () {
     destroyAlert(currentAlertId);
   };
+
   alertClose.onclick = function () {
     destroyAlert(currentAlertId);
+  };
+
+  alertTitleBar.onmousedown = function (e) {
+    windowToDrag = alert;
   };
 
   alertBody.appendChild(alertButton);
@@ -163,5 +168,13 @@ window.onload = function () {
   appendMenuElement("Credits", logDummy);
   getBattery();
 
-  createAlert("Hello", "Alert", 20, 40, 10);
+  window.onmouseup = function (e) {
+    windowToDrag = null;
+  };
+
+  window.onmousemove = function (e) {
+    handleDrag(e, windowToDrag);
+  };
+
+  createAlert("Hello", "Alert", 20, 20, 10);
 };

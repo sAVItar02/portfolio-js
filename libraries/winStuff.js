@@ -18,6 +18,16 @@ var windowCount = 0;
 var windowToDrag = null;
 var activeWindow = null;
 
+function setActiveWindow(w, taskbarButton) {
+  activeWindow = w;
+  // console.log(document.querySelectorAll(".taskbar-btn"));
+  document.querySelectorAll(".taskbar-btn").forEach((e) => {
+    e.classList.remove("active");
+  });
+
+  taskbarButton.classList.add("active");
+}
+
 /**
  *
  * @param {String} text Heading which is supposed to appear as the menu item text
@@ -58,6 +68,42 @@ function hideMenu() {
   document.getElementById("menuButton").classList.remove("active");
 }
 
+function makeAlertActive(id, taskbarButton) {
+  const alert = document.getElementById(id);
+  if (alert && alert.id != activeWindow.id) {
+    alert.style.zIndex = parseInt(alert.style.zIndex) + alertCount + 1;
+    setActiveWindow(alert, taskbarButton);
+  }
+}
+
+function makeWindowActive(id, taskbarButton) {
+  const w = document.getElementById(id);
+  if (w && activeWindow.id != w.id) {
+    w.style.zIndex = parseInt(w.style.zIndex) + windowCount + 1;
+    setActiveWindow(w, taskbarButton);
+  }
+}
+
+function toggleWindow(id, taskbarButton) {
+  const w = document.getElementById(id);
+  if (w) {
+    console.log(w.style.display);
+    if (w.style.display == "block" || w.style.display == "") {
+      w.style.display = "none";
+    } else {
+      w.style.display = "block";
+    }
+  }
+
+  if (taskbarButton.classList.contains("active")) {
+    taskbarButton.classList.remove("active");
+  } else {
+    taskbarButton.classList.add("active");
+  }
+}
+
+function updateActiveWindow() {}
+
 /**
  *
  * @param {String} text Text of the alert
@@ -90,6 +136,12 @@ function createAlert(text, titleText, h, w, z) {
   alertBody.classList.add("alert-body");
   alertBody.classList.add("flex-center-column");
 
+  const taskbarAlertButton = document.createElement("button");
+  taskbarAlertButton.type = "button";
+  taskbarAlertButton.classList.add("taskbar-btn");
+  taskbarAlertButton.innerText = "Alert";
+  taskbarAlertButton.classList.add("primary-button");
+
   alertTitleBar.appendChild(alertClose);
 
   alertBody.innerText = text;
@@ -100,18 +152,27 @@ function createAlert(text, titleText, h, w, z) {
   alertButton.style.marginTop = "20px";
   alertButton.innerText = "Ok";
 
+  alert.onclick = function (e) {
+    e.stopImmediatePropagation();
+    makeAlertActive(currentAlertId, taskbarAlertButton);
+  };
+
   alertButton.onclick = function () {
-    destroyAlert(currentAlertId);
+    destroyAlert(currentAlertId, taskbarAlertButton);
     playClick();
   };
 
-  alertClose.onclick = function () {
-    destroyAlert(currentAlertId);
+  alertClose.onclick = function (e) {
+    destroyAlert(currentAlertId, taskbarAlertButton);
     playClose();
   };
 
   alertTitleBar.onmousedown = function (e) {
     windowToDrag = alert;
+  };
+
+  taskbarAlertButton.onclick = function () {
+    toggleWindow(currentAlertId, taskbarAlertButton);
   };
 
   alertBody.appendChild(alertButton);
@@ -123,20 +184,33 @@ function createAlert(text, titleText, h, w, z) {
 
   alert.style.top = random[1] + "px";
   alert.style.left = random[0] + "px";
+  setActiveWindow(alert, taskbarAlertButton);
+
+  document
+    .getElementById("taskbarButtonsContainer")
+    .appendChild(taskbarAlertButton);
+  taskbarAlertButton.classList.add("active");
 }
 
 /**
  *
  * @param {Integer} id unique id of the window to destroy
  */
-function destroyAlert(id) {
+function destroyAlert(id, taskbarButton) {
   document.getElementById(id).remove();
+  taskbarButton.remove();
   alertCount--;
 }
 
+function destroyWindow(id, taskbarButton) {
+  document.getElementById(id).remove();
+  taskbarButton.remove();
+  windowCount--;
+}
+
 function getRandomWindowPosition() {
-  let xOrigin = window.innerWidth - window.innerWidth * 0.7;
-  let yOrigin = window.innerHeight - window.innerHeight * 0.7;
+  let xOrigin = window.innerWidth - window.innerWidth * 0.65;
+  let yOrigin = window.innerHeight - window.innerHeight * 0.65;
 
   let randomX = Math.floor(Math.random() * (xOrigin + 100 - xOrigin) + xOrigin);
   let randomY = Math.floor(Math.random() * (yOrigin + 100 - yOrigin) + yOrigin);
@@ -153,12 +227,21 @@ function createTaskBar() {
   menuButton.type = "button";
   menuButton.innerText = "Menu";
 
+  const buttonContainer = document.createElement("div");
+  buttonContainer.id = "buttonContainer";
+
+  const taskbarButtonsContainer = document.createElement("div");
+  taskbarButtonsContainer.id = "taskbarButtonsContainer";
+
+  buttonContainer.appendChild(menuButton);
+  buttonContainer.appendChild(taskbarButtonsContainer);
+
   menuButton.onclick = function () {
     toggleMenu();
     playClick();
   };
 
-  taskbar.appendChild(menuButton);
+  taskbar.appendChild(buttonContainer);
 
   const menu = document.createElement("ul");
   menu.id = "menu";
@@ -167,20 +250,79 @@ function createTaskBar() {
   document.body.appendChild(menu);
 }
 
-window.onload = function () {
-  createTaskBar();
-  appendMenuElement("About", logDummy);
-  appendMenuElement("Resume", logDummy);
-  appendMenuElement("Credits", logDummy);
-  getBattery();
+function createWindow(text, titleText, h, w, z = 1, imgs) {
+  windowCount++;
+  const currentWindowId = `window-${windowCount}`;
+  const win = document.createElement("div");
+  win.id = currentWindowId;
+  win.classList.add("window");
+  win.style.height = h + "vh";
+  win.style.width = w + "vw";
+  win.style.zIndex = z;
 
-  window.onmouseup = function (e) {
-    windowToDrag = null;
+  const wTitle = document.createElement("div");
+  wTitle.classList.add("window-title");
+  wTitle.classList.add("flex-center");
+  wTitle.innerText = titleText;
+
+  const wClose = document.createElement("img");
+  wClose.classList.add("close-btn");
+  wClose.src = "./../public/assets/xmark-solid.svg";
+  wClose.alt = "Close button icon";
+
+  const wBody = document.createElement("div");
+  wBody.classList.add("window-body");
+
+  const wTaskbarButton = document.createElement("button");
+  wTaskbarButton.id = `${currentWindowId}-button`;
+  wTaskbarButton.classList.add("taskbar-btn");
+  wTaskbarButton.classList.add("primary-button");
+  wTaskbarButton.innerText = titleText;
+
+  wBody.innerHTML = text;
+
+  wTitle.appendChild(wClose);
+  win.appendChild(wTitle);
+  win.appendChild(wBody);
+
+  wClose.onclick = function (e) {
+    destroyWindow(currentWindowId, wTaskbarButton);
+    playClose();
   };
 
-  window.onmousemove = function (e) {
-    handleDrag(e, windowToDrag);
+  wTitle.onmousedown = function (e) {
+    windowToDrag = win;
   };
 
-  createAlert("Hello", "Alert", 20, 20, 10);
-};
+  wTaskbarButton.onclick = function () {
+    toggleWindow(currentWindowId, wTaskbarButton);
+  };
+
+  const pos = getRandomWindowPosition();
+
+  win.style.top = pos[1] + "px";
+  win.style.left = pos[0] + "px";
+
+  document.body.appendChild(win);
+  document
+    .getElementById("taskbarButtonsContainer")
+    .appendChild(wTaskbarButton);
+}
+
+// window.onload = function () {
+//   createTaskBar();
+//   appendMenuElement("About", logDummy);
+//   appendMenuElement("Resume", logDummy);
+//   appendMenuElement("Credits", logDummy);
+//   getBattery();
+
+//   window.onmouseup = function (e) {
+//     windowToDrag = null;
+//   };
+
+//   window.onmousemove = function (e) {
+//     handleDrag(e, windowToDrag);
+//   };
+
+//   createWindow("Hello", "About", 30, 30, 5);
+// };

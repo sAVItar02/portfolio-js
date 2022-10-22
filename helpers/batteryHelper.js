@@ -44,6 +44,7 @@ function getBattery() {
     let hasAlerted = false;
     bat.onlevelchange = (bat2) => {
       updateBattery(bat2.currentTarget.level);
+      updateBatteryImg(bat2.currentTarget.level, i);
       if (level * 100 <= 20 && !hasAlerted) {
         hasAlerted = true;
         const alert = document.createElement("div");
@@ -66,4 +67,16 @@ function updateBattery(level) {
   document.getElementById("batteryPerc").innerText = `${Math.floor(
     level * 100
   )}%`;
+}
+
+function updateBatteryImg(level, i) {
+  if (level * 100 == 100) {
+    i.src = "./../public/assets/battery-full-solid.svg";
+  } else if (level * 100 < 100 && level * 100 >= 75) {
+    i.src = "./../public/assets/battery-three-quarters-solid.svg";
+  } else if (level * 100 < 75 && level * 100 >= 50) {
+    i.src = "./../public/assets/battery-half-solid.svg";
+  } else if (level * 100 < 50 && level * 100 >= 0) {
+    i.src = "./../public/assets/battery-quarter-solid.svg";
+  }
 }

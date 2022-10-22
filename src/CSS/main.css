@@ -36,6 +36,11 @@
     --title-bar-color: #664fc6;
     --window-border-color: #060c1b;
     --window-shadow-color: #111111;
+
+    --scrollbar-track-color: #f7a5a9;
+    --scrollbar-thumb-color: #f4858a;
+    /* --scrollbar-track-color: #c0b4f4;
+    --scrollbar-thumb-color: #8f77f1; */
 }
 
 html {
@@ -57,6 +62,18 @@ body {
 #root {
     height: 100vh;
     width: 100%;
+}
+
+::-webkit-scrollbar {
+    width: 1.5rem;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-color);
 }
 
 /* ------------------------- UTILITY CLASSES -------------------------- */
@@ -108,8 +125,31 @@ body {
     padding: 0 2px;
 }
 
+#buttonContainer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+}
+
+#taskbarButtonsContainer {
+    width: 100%;
+    margin-left: 7px;
+}
+
+.taskbar-btn {
+    min-width: 150px;
+    width: fit-content;
+    height: 100%;
+    font-size: 1.6rem;
+    text-align: left;
+    margin-left: 3px;
+    font-family: agave, monospace;
+    padding-left: 5px;
+}
+
 #menuButton {
-    height: 90%;
+    height: 91%;
     padding: 0 15px;
     background-color: var(--menuButton-bg);
     border: 2px solid var(--menuButton-border-top);
@@ -119,10 +159,11 @@ body {
     font-family: agave-bold, monospace;
 }
 
-#menuButton.active {
+#menuButton.active, .taskbar-btn.active {
     border: 2px solid var(--menuButton-border-bottom);
     border-bottom: 2px solid var(--menuButton-border-top);
     border-right: 2px solid var(--menuButton-border-top);
+    font-family: agave-bold, monospace;
 }
 
 #menu {
@@ -175,15 +216,16 @@ body {
     padding-right: 2px;
 }
 
-.alert {
+.alert, .window {
     position: absolute;
     background-color: var(--window-body-color);
     color: var(--taskbar-bg);
     padding-top: 20px;
     box-shadow: 5px 5px 0px var(--window-shadow-color);
+    display: block;
 }
 
-.alert-title {
+.alert-title, .window-title {
     position: inherit;
     background-color: var(--title-bar-color);
     border: 2px solid var(--window-border-color);
@@ -197,13 +239,18 @@ body {
     cursor: default;
 }
 
-.alert-body {
+.alert-body, .window-body {
     height: 100%;
     width: 100%;
     border: 2px solid var(--window-border-color);
     border-top: 0;
     color: var(--normal-text);
     font-size: 1.8rem;
+    padding: 20px 10px;
+}
+
+.window-body {
+    overflow-y: scroll;
 }
 
 .close-btn {

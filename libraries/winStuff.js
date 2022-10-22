@@ -18,15 +18,20 @@ var windowCount = 0;
 var windowToDrag = null;
 var activeWindow = null;
 
-function setActiveWindow(w, taskbarButton) {
-  activeWindow = w;
-  // console.log(document.querySelectorAll(".taskbar-btn"));
-  document.querySelectorAll(".taskbar-btn").forEach((e) => {
-    e.classList.remove("active");
-  });
+// function setActiveWindow(w, taskbarButton) {
+//   activeWindow = w;
+//   // console.log(document.querySelectorAll(".taskbar-btn"));
+//   document.querySelectorAll(".taskbar-btn").forEach((e) => {
+//     e.classList.remove("active");
+//   });
 
-  taskbarButton.classList.add("active");
-}
+//   taskbarButton.classList.toggle("active");
+// }
+
+// function removeActiveWindow(w, taskbarButton) {
+//   activeWindow = null;
+//   taskbarButton.classList.remove("active");
+// }
 
 /**
  *
@@ -68,41 +73,44 @@ function hideMenu() {
   document.getElementById("menuButton").classList.remove("active");
 }
 
-function makeAlertActive(id, taskbarButton) {
-  const alert = document.getElementById(id);
-  if (alert && alert.id != activeWindow.id) {
-    alert.style.zIndex = parseInt(alert.style.zIndex) + alertCount + 1;
-    setActiveWindow(alert, taskbarButton);
-  }
+function setWindowActive(id) {
+  document.querySelectorAll(".window").forEach((w) => {
+    if (w.id == id) {
+      if (activeWindow != w) {
+        w.style.zIndex = parseInt(w.style.zIndex) + windowCount + 1;
+      }
+      document.getElementById(`${id}-button`).classList.add("active");
+      activeWindow = document.getElementById(id);
+    } else {
+      w.style.zIndex = parseInt(w.style.zIndex) - windowCount - 1;
+      document.getElementById(`${w.id}-button`).classList.remove("active");
+      if (w.style.zIndex <= 5) w.style.zIndex = 5;
+    }
+  });
 }
 
-function makeWindowActive(id, taskbarButton) {
-  const w = document.getElementById(id);
-  if (w && activeWindow.id != w.id) {
-    w.style.zIndex = parseInt(w.style.zIndex) + windowCount + 1;
-    setActiveWindow(w, taskbarButton);
-  }
+function showWindow(id, taskbarButton) {
+  document.getElementById(id).style.visibility = "visible";
+  taskbarButton.classList.add("active");
+  setWindowActive(id);
+}
+
+function hideWindow(id, taskbarButton) {
+  document.getElementById(id).style.visibility = "hidden";
+  taskbarButton.classList.remove("active");
+  setWindowActive(null);
 }
 
 function toggleWindow(id, taskbarButton) {
-  const w = document.getElementById(id);
-  if (w) {
-    console.log(w.style.display);
-    if (w.style.display == "block" || w.style.display == "") {
-      w.style.display = "none";
-    } else {
-      w.style.display = "block";
-    }
-  }
-
-  if (taskbarButton.classList.contains("active")) {
-    taskbarButton.classList.remove("active");
+  if (
+    document.getElementById(id).style.visibility == "visible" ||
+    document.getElementById(id).style.visibility == ""
+  ) {
+    hideWindow(id, taskbarButton);
   } else {
-    taskbarButton.classList.add("active");
+    showWindow(id, taskbarButton);
   }
 }
-
-function updateActiveWindow() {}
 
 /**
  *
@@ -173,6 +181,7 @@ function createAlert(text, titleText, h, w, z) {
 
   taskbarAlertButton.onclick = function () {
     toggleWindow(currentAlertId, taskbarAlertButton);
+    playClick();
   };
 
   alertBody.appendChild(alertButton);
@@ -189,7 +198,6 @@ function createAlert(text, titleText, h, w, z) {
   document
     .getElementById("taskbarButtonsContainer")
     .appendChild(taskbarAlertButton);
-  taskbarAlertButton.classList.add("active");
 }
 
 /**
@@ -285,7 +293,14 @@ function createWindow(text, titleText, h, w, z = 1, imgs) {
   win.appendChild(wTitle);
   win.appendChild(wBody);
 
+  win.onclick = function (e) {
+    e.stopImmediatePropagation();
+    // setActiveWindow(win, wTaskbarButton);
+    showWindow(currentWindowId, wTaskbarButton);
+  };
+
   wClose.onclick = function (e) {
+    e.stopImmediatePropagation();
     destroyWindow(currentWindowId, wTaskbarButton);
     playClose();
   };
@@ -296,6 +311,7 @@ function createWindow(text, titleText, h, w, z = 1, imgs) {
 
   wTaskbarButton.onclick = function () {
     toggleWindow(currentWindowId, wTaskbarButton);
+    playClick();
   };
 
   const pos = getRandomWindowPosition();
@@ -307,6 +323,8 @@ function createWindow(text, titleText, h, w, z = 1, imgs) {
   document
     .getElementById("taskbarButtonsContainer")
     .appendChild(wTaskbarButton);
+
+  showWindow(currentWindowId, wTaskbarButton);
 }
 
 // window.onload = function () {

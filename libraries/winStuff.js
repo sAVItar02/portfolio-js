@@ -18,21 +18,6 @@ var windowCount = 0;
 var windowToDrag = null;
 var activeWindow = null;
 
-// function setActiveWindow(w, taskbarButton) {
-//   activeWindow = w;
-//   // console.log(document.querySelectorAll(".taskbar-btn"));
-//   document.querySelectorAll(".taskbar-btn").forEach((e) => {
-//     e.classList.remove("active");
-//   });
-
-//   taskbarButton.classList.toggle("active");
-// }
-
-// function removeActiveWindow(w, taskbarButton) {
-//   activeWindow = null;
-//   taskbarButton.classList.remove("active");
-// }
-
 /**
  *
  * @param {String} text Heading which is supposed to appear as the menu item text
@@ -241,6 +226,9 @@ function createTaskBar() {
   const taskbarButtonsContainer = document.createElement("div");
   taskbarButtonsContainer.id = "taskbarButtonsContainer";
 
+  const batteryTimeContainer = document.createElement("div");
+  batteryTimeContainer.id = "batteryTimeContainer";
+
   buttonContainer.appendChild(menuButton);
   buttonContainer.appendChild(taskbarButtonsContainer);
 
@@ -250,6 +238,7 @@ function createTaskBar() {
   };
 
   taskbar.appendChild(buttonContainer);
+  taskbar.appendChild(batteryTimeContainer);
 
   const menu = document.createElement("ul");
   menu.id = "menu";
@@ -327,20 +316,40 @@ function createWindow(text, titleText, h, w, z = 1, imgs) {
   showWindow(currentWindowId, wTaskbarButton);
 }
 
-// window.onload = function () {
-//   createTaskBar();
-//   appendMenuElement("About", logDummy);
-//   appendMenuElement("Resume", logDummy);
-//   appendMenuElement("Credits", logDummy);
-//   getBattery();
+function createDesktopApp(id, img, title, h, w, action) {
+  const app = document.createElement("div");
+  app.id = id;
+  app.classList.add("desktop-app");
+  app.classList.add("flex-center");
+  app.style.height = h + "px";
+  app.style.width = w + "px";
 
-//   window.onmouseup = function (e) {
-//     windowToDrag = null;
-//   };
+  const appIcon = document.createElement("img");
+  appIcon.classList.add("app-icon");
+  appIcon.src = img;
+  appIcon.alt = `${title} Icon`;
 
-//   window.onmousemove = function (e) {
-//     handleDrag(e, windowToDrag);
-//   };
+  const appTitle = document.createElement("p");
+  appTitle.classList.add("app-title");
+  appTitle.innerText = title;
 
-//   createWindow("Hello", "About", 30, 30, 5);
-// };
+  app.appendChild(appIcon);
+  app.appendChild(appTitle);
+
+  document.getElementById("root").appendChild(app);
+
+  app.ondblclick = function (e) {
+    e.stopImmediatePropagation();
+    action();
+    playClick();
+  };
+
+  app.onclick = function (e) {
+    e.stopImmediatePropagation();
+    playClick();
+  };
+
+  app.onmouseenter = function (e) {
+    playHover();
+  };
+}

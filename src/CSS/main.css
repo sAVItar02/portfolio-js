@@ -21,6 +21,7 @@
 
 .theme-1 {
     --normal-text: #111;
+    --normal-text-light: #ffffff;
     --bold-text: #0a0a0a;
     /* --taskbar-bg: #faf6b9; */
     --taskbar-bg: #f99ea3;
@@ -41,6 +42,8 @@
     --scrollbar-thumb-color: #f4858a;
     /* --scrollbar-track-color: #c0b4f4;
     --scrollbar-thumb-color: #8f77f1; */
+
+    --app-title-bg-transluscent: rgba(0, 0, 0, 0.4);
 }
 
 html {
@@ -62,6 +65,11 @@ body {
 #root {
     height: 100vh;
     width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 50px 10px;
 }
 
 ::-webkit-scrollbar {
@@ -125,11 +133,24 @@ body {
     padding: 0 2px;
 }
 
-#buttonContainer {
+#buttonContainer, #batteryTimeContainer {
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between; 
+}
+
+.breathe {
+    animation: breathe 500ms linear infinite alternate;
+}
+
+@keyframes breathe {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 #taskbarButtonsContainer {
@@ -141,7 +162,7 @@ body {
     min-width: 150px;
     width: fit-content;
     height: 100%;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     text-align: left;
     margin-left: 3px;
     font-family: agave, monospace;
@@ -220,6 +241,23 @@ body {
     padding-right: 2px;
 }
 
+#timeElement {
+    font-size: 1.5rem;
+    background-color: var(--menuButton-bg);
+    padding: 0 10px;
+    border: 2px solid var(--menuButton-border-top);
+    border-bottom: 2px solid var(--menuButton-border-bottom);
+    border-right: 2px solid var(--menuButton-border-bottom);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 91%;
+}
+
+#ampm {
+    margin-left: 5px;
+}
+
 .alert, .window {
     position: absolute;
     background-color: var(--window-body-color);
@@ -264,4 +302,32 @@ body {
     right: 5px;
 }
 
+.desktop-app {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.desktop-app:hover {
+    background-color: var(--app-title-bg-transluscent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.app-icon {
+    object-fit: cover;
+    height: 55%;
+    width: auto;
+}
+
+.app-title {
+    font-size: 1.6rem;
+    color: var(--normal-text-light);
+    background-color: var(--app-title-bg-transluscent);
+    padding: 4px;
+    margin-top: 20px;
+}
 

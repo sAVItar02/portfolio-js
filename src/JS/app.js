@@ -20,7 +20,7 @@ window.onload = function () {
   appendMenuElement("Resume", logDummy);
   appendMenuElement("Credits", logDummy);
   getBattery();
-  getTime12();
+  getTime24();
 
   setInterval(function () {
     updateTime();

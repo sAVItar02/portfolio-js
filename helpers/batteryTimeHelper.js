@@ -41,19 +41,19 @@ function getBattery() {
     batteryElement.appendChild(batteryPerc);
 
     // Alert When Low
-    // let hasAlerted = false;
-    // bat.onlevelchange = (bat2) => {
-    //   updateBattery(bat2.currentTarget.level);
-    //   updateBatteryImg(bat2.currentTarget.level, i);
-    //   if (level * 100 <= 20 && !hasAlerted) {
-    //     hasAlerted = true;
-    //     const alert = document.createElement("div");
-    //     alert.id = "batteryAlert";
-    //     alert.innerText = "Battery Low! Please plug in the charger!";
+    let hasAlerted = false;
+    bat.onlevelchange = (bat2) => {
+      updateBattery(bat2.currentTarget.level);
+      updateBatteryImg(bat2.currentTarget.level, i);
+      // if (level * 100 <= 20 && !hasAlerted) {
+      //   hasAlerted = true;
+      //   const alert = document.createElement("div");
+      //   alert.id = "batteryAlert";
+      //   alert.innerText = "Battery Low! Please plug in the charger!";
 
-    //     document.body.appendChild(alert);
-    //   }
-    // };
+      //   document.body.appendChild(alert);
+      // }
+    };
   });
 
   document.getElementById("batteryTimeContainer").appendChild(batteryElement);
@@ -99,6 +99,14 @@ function getTime24() {
     ampm = "AM";
   }
 
+  if (m < 10) {
+    m = `0${m}`;
+  }
+
+  if (h < 10) {
+    h = `0${h}`;
+  }
+
   let timeString = `<span id="timeHour">${h}</span><span class="breathe">:</span><span id="timeMinute">${m}</span> <span id="ampm">${ampm}</span>`;
 
   timeElement.innerHTML = timeString;
@@ -116,6 +124,14 @@ function getTime12() {
     h = time[0] - 12;
   }
 
+  if (m < 10) {
+    m = `0${m}`;
+  }
+
+  if (h < 10) {
+    h = `0${h}`;
+  }
+
   document.getElementById("timeHour").innerText = h;
   document.getElementById("timeMinute").innerText = time[1];
   document.getElementById("ampm").innerText = time[2];
@@ -130,6 +146,14 @@ function updateTime() {
     ampm = "PM";
   } else {
     ampm = "AM";
+  }
+
+  if (m < 10) {
+    m = `0${m}`;
+  }
+
+  if (h < 10) {
+    h = `0${h}`;
   }
 
   document.getElementById("timeHour").innerText = h;

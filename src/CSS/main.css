@@ -44,6 +44,9 @@
     --scrollbar-thumb-color: #8f77f1; */
 
     --app-title-bg-transluscent: rgba(0, 0, 0, 0.4);
+
+    --link-color: #fa8187;
+    --input-bg-color: #f3babc;
 }
 
 html {
@@ -82,6 +85,59 @@ body {
 
 ::-webkit-scrollbar-thumb {
     background: var(--scrollbar-thumb-color);
+}
+
+/* ------------------------- UNIVERSAL STYLES ------------------------- */
+
+hr {
+    background-color: var(--scrollbar-thumb-color);
+    border-color: var(--scrollbar-thumb-color);
+    height: 0px;
+    outline: none;
+    border-bottom: none;
+}
+
+a {
+    color: var(--link-color);
+}
+
+li {
+    line-height: 1.1;
+    font-size: 1.6rem;
+}
+
+form {
+    padding: 20px 0 0 0;
+}
+
+label {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: bold;
+    padding: 0 0 4px 0;
+}
+
+input, textarea {
+    font-size: 1.4rem;
+    padding: 0.5rem;
+    width: 100%;
+    border: 2px solid var(--menuButton-border-top);
+    border-bottom: 2px solid var(--menuButton-border-bottom);
+    border-right: 2px solid var(--menuButton-border-bottom);
+    background-color: var(--input-bg-color);
+    border: 1px sol;
+    outline: transparent;
+    font-family: agave, monospace;
+}
+
+input:focus, textarea:focus {
+    border: 2px solid var(--menuButton-border-bottom);
+    border-bottom: 2px solid var(--menuButton-border-top);
+    border-right: 2px solid var(--menuButton-border-top);
+}
+
+p {
+    font-size: 1.6rem;
 }
 
 /* ------------------------- UTILITY CLASSES -------------------------- */
@@ -288,7 +344,7 @@ body {
     border-top: 0;
     color: var(--normal-text);
     font-size: 1.8rem;
-    padding: 20px 10px;
+    padding: 20px 40px;
 }
 
 .window-body {
@@ -331,3 +387,15 @@ body {
     margin-top: 20px;
 }
 
+.contact-list {
+    padding: 10px 0 0 10px;
+    font-size: 1.7rem;
+}
+
+.form-group {
+    padding-bottom: 15px;
+}
+
+#contact-form-button {
+    margin: auto;
+}

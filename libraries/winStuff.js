@@ -105,9 +105,9 @@ function toggleWindow(id, taskbarButton) {
  * @param {Integer} w width in vw for the text box
  * @param {Integer} z z Index for the text box
  */
-function createAlert(text, titleText, h, w, z) {
+function createAlert(id, text, titleText, h, w, z) {
   alertCount++;
-  const currentAlertId = `alert-${alertCount}`;
+  const currentAlertId = id;
   const alert = document.createElement("div");
   alert.id = currentAlertId;
   alert.classList.add("alert");
@@ -143,19 +143,21 @@ function createAlert(text, titleText, h, w, z) {
   alertButton.type = "button";
   alertButton.classList.add("primary-button");
   alertButton.style.marginTop = "20px";
-  alertButton.innerText = "Ok";
+  alertButton.innerText = "OK";
 
   alert.onclick = function (e) {
     e.stopImmediatePropagation();
-    makeAlertActive(currentAlertId, taskbarAlertButton);
+    showWindow(currentAlertId, taskbarAlertButton);
   };
 
-  alertButton.onclick = function () {
+  alertButton.onclick = function (e) {
+    e.stopImmediatePropagation();
     destroyAlert(currentAlertId, taskbarAlertButton);
     playClick();
   };
 
   alertClose.onclick = function (e) {
+    e.stopImmediatePropagation();
     destroyAlert(currentAlertId, taskbarAlertButton);
     playClose();
   };
@@ -178,11 +180,12 @@ function createAlert(text, titleText, h, w, z) {
 
   alert.style.top = random[1] + "px";
   alert.style.left = random[0] + "px";
-  setActiveWindow(alert, taskbarAlertButton);
 
   document
     .getElementById("taskbarButtonsContainer")
     .appendChild(taskbarAlertButton);
+
+  showWindow(currentAlertId, taskbarAlertButton);
 }
 
 /**
@@ -209,6 +212,16 @@ function getRandomWindowPosition() {
   let randomY = Math.floor(Math.random() * (yOrigin + 100 - yOrigin) + yOrigin);
 
   return [randomX, randomY];
+}
+
+function centerWindow(id) {
+  let win = document.getElementById(id);
+
+  let h = window.innerHeight / 2 - win.offsetHeight / 2;
+  let w = window.innerWidth / 2 - win.offsetWidth / 2;
+
+  win.style.top = h + "px";
+  win.style.left = w + "px";
 }
 
 function createTaskBar() {
@@ -247,9 +260,14 @@ function createTaskBar() {
   document.body.appendChild(menu);
 }
 
-function createWindow(text, titleText, h, w, z = 1, imgs) {
+function createWindow(id, text, titleText, h, w, z = 1, imgs) {
+  if (document.getElementById(id)) {
+    showWindow(id, document.getElementById(`${id}-button`));
+    return;
+  }
+
   windowCount++;
-  const currentWindowId = `window-${windowCount}`;
+  const currentWindowId = id;
   const win = document.createElement("div");
   win.id = currentWindowId;
   win.classList.add("window");
@@ -341,7 +359,6 @@ function createDesktopApp(id, img, title, h, w, action) {
   app.ondblclick = function (e) {
     e.stopImmediatePropagation();
     action();
-    playClick();
   };
 
   app.onclick = function (e) {

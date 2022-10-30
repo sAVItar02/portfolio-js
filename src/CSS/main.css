@@ -4,8 +4,8 @@
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    cursor: url("./../../public/assets/pngegg.png") auto;
     user-select: none;
+    cursor: default;
 }
 
 @font-face {
@@ -101,6 +101,10 @@ a {
     color: var(--link-color);
 }
 
+ul {
+    list-style-type: square;
+}
+
 li {
     line-height: 1.1;
     font-size: 1.6rem;
@@ -138,6 +142,14 @@ input:focus, textarea:focus {
 
 p {
     font-size: 1.6rem;
+    padding: 10px 0 0 0;
+    text-align: justify;
+    line-height: 1.1;
+}
+
+img {
+    max-width: 200px;
+    max-height: 200px;
 }
 
 /* ------------------------- UTILITY CLASSES -------------------------- */
@@ -169,6 +181,10 @@ p {
     border: 2px solid var(--menuButton-border-bottom);
     border-bottom: 2px solid var(--menuButton-border-top);
     border-right: 2px solid var(--menuButton-border-top);
+}
+
+.fw-bold {
+    font-family: agave-bold, monospace;
 }
 
 /* -------------------------------------------------------------------- */
@@ -380,11 +396,12 @@ p {
 }
 
 .app-title {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     color: var(--normal-text-light);
     background-color: var(--app-title-bg-transluscent);
     padding: 4px;
     margin-top: 20px;
+    line-height: 1;
 }
 
 .contact-list {
@@ -399,3 +416,23 @@ p {
 #contact-form-button {
     margin: auto;
 }
+
+.about-img {
+    margin-bottom: 10px;
+}
+
+.about-img > img {
+    outline: 2px solid var(--normal-text);
+}
+
+.about-tech {
+    margin-top: 20px;
+    margin-bottom: 90px;
+}
+
+.about-tech-list-1, .about-tech-list-2 {
+    float: left;
+    margin: 10px 20px 0 30px;
+}
+
+

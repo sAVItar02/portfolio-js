@@ -35,6 +35,7 @@ function appendMenuElement(text, handler) {
   menuItem.onclick = function () {
     toggleMenu();
     handler();
+    playClick();
   };
 
   menu.appendChild(menuItem);
@@ -205,11 +206,17 @@ function destroyWindow(id, taskbarButton) {
 }
 
 function getRandomWindowPosition() {
-  let xOrigin = window.innerWidth - window.innerWidth * 0.65;
-  let yOrigin = window.innerHeight - window.innerHeight * 0.65;
+  let xOriginMin = window.innerWidth - window.innerWidth * 0.85;
+  let xOriginMax = window.innerWidth - window.innerWidth * 0.65;
+  let yOriginMin = window.innerHeight - window.innerHeight * 0.85;
+  let yOriginMax = window.innerHeight - window.innerHeight * 0.65;
 
-  let randomX = Math.floor(Math.random() * (xOrigin + 100 - xOrigin) + xOrigin);
-  let randomY = Math.floor(Math.random() * (yOrigin + 100 - yOrigin) + yOrigin);
+  let randomX = Math.floor(
+    Math.random() * (xOriginMax - xOriginMin) + xOriginMin
+  );
+  let randomY = Math.floor(
+    Math.random() * (yOriginMax - yOriginMin) + yOriginMin
+  );
 
   return [randomX, randomY];
 }

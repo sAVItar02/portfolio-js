@@ -5,6 +5,7 @@ function getBattery() {
   let batteryElement = document.createElement("div");
   batteryElement.id = "batteryElement";
   navigator.getBattery().then((bat) => {
+    console.log(bat);
     const { level, onlevelchange, charging } = bat;
 
     // Check if chargin
@@ -53,6 +54,19 @@ function getBattery() {
 
       //   document.body.appendChild(alert);
       // }
+    };
+
+    bat.onchargingchange = (bat2) => {
+      if (bat2.currentTarget.charging == true) {
+        const i = document.createElement("img");
+        i.id = "charging";
+        i.src = "./../public/assets/plug-solid.svg";
+        i.alt = "Battery Image";
+
+        batteryElement.insertBefore(i, batteryElement.firstChild);
+      } else {
+        document.getElementById("charging").remove();
+      }
     };
   });
 

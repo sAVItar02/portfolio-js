@@ -4,7 +4,7 @@
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    cursor: default;
+    cursor: url("./../../public/assets/pngegg.png") auto;
     user-select: none;
 }
 
@@ -43,7 +43,7 @@
     /* --scrollbar-track-color: #c0b4f4;
     --scrollbar-thumb-color: #8f77f1; */
 
-    --app-title-bg-transluscent: rgba(0, 0, 0, 0.4);
+    --app-title-bg-transluscent: rgba(0, 0, 0, 0.2);
 
     --link-color: #fa8187;
     --input-bg-color: #f3babc;

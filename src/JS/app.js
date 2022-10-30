@@ -49,7 +49,6 @@ function openContact() {
 
   document.getElementById("contact-form-button").onclick = function (e) {
     e.preventDefault();
-    console.log("object");
   };
 }
 
@@ -72,6 +71,8 @@ window.onload = function () {
   window.onmousemove = function (e) {
     handleDrag(e, windowToDrag);
   };
+
+  createWindow("About", "sjkfsdkjfhsdjkf", "About", 20, 30, 5);
 
   createDesktopApp(
     "github",

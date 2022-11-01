@@ -154,6 +154,98 @@ function makeAlert(id) {
   w.children[1].appendChild(alertBody);
 }
 
+function createCard(id, img, heading, desc, links, tags) {
+  const card = document.createElement("div");
+  card.classList.add("project-container");
+  card.classList.add("flex-center");
+
+  const imgBuffer = document.createElement("div");
+  imgBuffer.classList.add("project-img-buffer");
+
+  const image = document.createElement("img");
+  image.src = img;
+  image.alt = "Project Image";
+
+  imgBuffer.appendChild(image);
+
+  const projectContent = document.createElement("div");
+  projectContent.classList.add("project-content");
+
+  const projectTagline = document.createElement("div");
+  projectTagline.classList.add("project-tagline");
+  projectTagline.classList.add("fw-bold");
+  projectTagline.innerText = "Featured Project";
+
+  const projectHeading = document.createElement("div");
+  projectHeading.classList.add("project-heading");
+  projectHeading.classList.add("fw-bold");
+  projectHeading.innerText = heading;
+
+  const projectDesc = document.createElement("div");
+  projectDesc.classList.add("project-desc");
+  projectDesc.innerText = desc;
+
+  projectContent.appendChild(projectTagline);
+  projectContent.appendChild(projectHeading);
+  projectContent.appendChild(projectDesc);
+
+  const projectBtnContainer = document.createElement("div");
+  projectBtnContainer.classList.add("project-btn-container");
+
+  const source = document.createElement("div");
+  source.classList.add("source");
+
+  projectContent.appendChild(projectBtnContainer);
+  projectBtnContainer.appendChild(source);
+
+  const githubButton = document.createElement("a");
+  githubButton.type = "button";
+  githubButton.classList.add("hyperlink");
+  githubButton.href = links[0];
+  githubButton.target = "_blank";
+
+  const githubIcon = document.createElement("img");
+  githubIcon.src = "./../public/assets/github-link-icon.png";
+
+  githubButton.appendChild(githubIcon);
+
+  source.appendChild(githubButton);
+
+  if (links[1]) {
+    const siteButton = document.createElement("a");
+    siteButton.type = "button";
+    siteButton.classList.add("hyperlink");
+    siteButton.href = links[1];
+    siteButton.target = "_blank";
+
+    source.appendChild(siteButton);
+
+    const siteIcon = document.createElement("img");
+    siteIcon.src = "./../public/assets/hyperlink.png";
+
+    siteButton.appendChild(siteIcon);
+  }
+
+  const projectTags = document.createElement("div");
+  projectTags.classList.add("project-tags");
+
+  tags.forEach((tag) => {
+    const projectTag = document.createElement("div");
+    projectTag.classList.add("tag");
+    projectTag.innerText = tag;
+
+    projectTags.appendChild(projectTag);
+  });
+
+  projectBtnContainer.appendChild(projectTags);
+
+  card.appendChild(imgBuffer);
+  card.appendChild(projectContent);
+
+  document.getElementById(id).childNodes[1].appendChild(card);
+  // console.log(typeof card);
+}
+
 function createTaskBar() {
   const taskbar = document.createElement("div");
   taskbar.id = "taskbar";

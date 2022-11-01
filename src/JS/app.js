@@ -70,6 +70,32 @@ const about = `
   </div>
 `;
 
+const projects = `
+  <div class="project-container flex-center">
+    <div class="project-img-buffer">
+      <img src="./../../public/assets/about-img.jfif" alt="Project Image" />
+    </div>
+    <div class="project-content">
+      <div class="project-tagline fw-bold">Featured Project</div>
+      <div class="project-heading fw-bold">YourStore</div>
+      <div class="project-desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod assumenda fuga illum, quasi
+          eligendi animi officia similique accusamus magnam corrupti!</div>
+      <div class="project-btn-container">
+          <div class="source">
+              <button class="github"><img src="" alt="Github"></button>
+              <button class="hyperlink"><img src="" alt=""></button>
+          </div>
+          <div class="project-tech">
+              <p class="project-tags">HTML</p>
+              <p class="project-tags">CSS</p>
+              <p class="project-tags">JS</p>
+              <p class="project-tags">Node.js</p>
+          </div>
+      </div>
+    </div>
+  </div>
+`;
+
 function openUrl(url) {
   window.open(url);
 }
@@ -88,10 +114,28 @@ function openAbout() {
   centerWindow("About");
 }
 
+function openProjects() {
+  createWindow("Projects", "", "Projects", 80, 60, 5);
+  centerWindow("Projects");
+
+  createCard(
+    "Projects",
+    "./../../public/assets/about-img.jfif",
+    "YourStore",
+    "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate vel cum ipsa neque perferendis sint, deserunt eos sit eius velit nemo minima, harum enim quia modi maxime excepturi molestias. Quia recusandae exercitationem a vitae. Debitis earum sed voluptates ab! Voluptates?",
+    ["#", "#"],
+    ["HTML", "CSS", "JS", "Node.js"]
+  );
+}
+
 window.onload = function () {
   createTaskBar();
   appendMenuElement("About", openAbout);
-  appendMenuElement("Resume", logDummy);
+  appendMenuElement("Resume", function () {
+    return openUrl(
+      "https://drive.google.com/file/d/10F4z3GeF8h1Jh1eHkQmMvvVpSisNMKRf/view?usp=sharing"
+    );
+  });
   appendMenuElement("Credits", logDummy);
   getBattery();
   getTime24();
@@ -109,8 +153,6 @@ window.onload = function () {
   window.onmousemove = function (e) {
     handleDrag(e, windowToDrag);
   };
-
-  createWindow("About", "sjkfsdkjfhsdjkf", "About", 20, 30, 5);
 
   createDesktopApp(
     "github",
@@ -151,6 +193,6 @@ window.onload = function () {
     "Projects",
     120,
     120,
-    logDummy
+    openProjects
   );
 };

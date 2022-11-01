@@ -23,6 +23,7 @@
     --normal-text: #111;
     --normal-text-light: #ffffff;
     --bold-text: #0a0a0a;
+    --gray-text: rgb(43, 42, 42);
     /* --taskbar-bg: #faf6b9; */
     --taskbar-bg: #f99ea3;
     --taskbar-border: #743337; 
@@ -47,6 +48,10 @@
 
     --link-color: #fa8187;
     --input-bg-color: #f3babc;
+
+    --card-bg-color: #f4b9bc;
+    --card-tagline-color: #ed5b63;
+    --card-desc-color: #ed9ca0;
 }
 
 html {
@@ -443,4 +448,88 @@ img {
 .about-tech-list-1, .about-tech-list-2 {
     float: left;
     margin: 10px 20px 0 30px;
+}
+
+/* ------------------- PROJECTS ---------------------- */
+
+.project-container {
+    background-color: var(--card-bg-color);
+    padding: 10px;
+    position: relative;
+}
+
+.project-img-buffer {
+    flex: 1;
+}
+
+.project-img-buffer > img {
+    max-height: 250px;
+    max-width: 250px;
+    /* outline: 2px solid var(--normal-text); */
+}
+
+.project-content {
+    margin-left: 20px;
+    flex: 3;
+    height: 250px;
+/* 
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    flex-direction: column; */
+}
+
+.project-tagline {
+    font-size: 1.5rem;
+    color: var(--card-tagline-color);
+    /* margin-bottom: 10px; */
+}
+
+.project-heading {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: var(--normal-text);
+}
+
+.project-tags {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    margin-top: 10px;
+    position: absolute;
+    bottom: 15px;
+}
+
+.source {
+    position: absolute;
+    bottom: 40px;
+}
+
+.project-desc {
+    /* background-color: var(--card-desc-color); */
+    /* padding: 10px; */
+    min-height: 100px;
+    height: fit-content;
+    text-align: justify;
+    font-size: 1.6rem;
+    color: var(--gray-text);
+/*     
+    position: absolute;
+    left: 220px;
+    right: 40px; */
+}
+
+.tag {
+    font-size: 1.4rem;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border: 1px solid var(--normal-text);
+    background-color: var(--card-desc-color);
+}
+
+.hyperlink, .hyperlink > img{
+    height: 25px;
+    width: 25px;
+    margin-right: 5px;
 }

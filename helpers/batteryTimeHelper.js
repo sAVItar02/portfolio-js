@@ -4,8 +4,12 @@
 function getBattery() {
   let batteryElement = document.createElement("div");
   batteryElement.id = "batteryElement";
+
+  if (navigator.getBattery == undefined) {
+    return;
+  }
+
   navigator.getBattery().then((bat) => {
-    console.log(bat);
     const { level, onlevelchange, charging } = bat;
 
     // Check if chargin

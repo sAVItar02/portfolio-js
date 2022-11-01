@@ -47,9 +47,10 @@ const about = `
     <div class="about-focus">
       <p class="fw-bold">Hi, I'm Aviral 😄</p>
       <p>I'm a 20-year-old undergrad student in CSE and a Web Developer living in <a href="https://en.wikipedia.org/wiki/Bangalore">Bengaluru</a></p>
-      <p>I enjoy building pages that live on the web, my interest in web development started back in 2019 when i took a <a href="https://www.udemy.com/course/the-web-developer-bootcamp/" target="_blank">Web Development Bootcamp</a> out of curiosity and ended up learning a lot about the web.</p>
+      <p>I enjoy building pages that live on the web, my interest in web development started back in 2019 when i took a <a href="https://www.udemy.com/course/the-web-developer-bootcamp/" target="_blank">Web Development Course</a> out of curiosity and ended up learning a lot about the web.</p>
       <p>Today, after having the opportunity to intern and learn at  <a href="https://www.linkedin.com/company/ultrainstinct-ai/" target="_blank">UltraInstinct</a> and <a href="https://www.linkedin.com/company/ascendance-st/mycompany/" target="_blank">Ascendance</a>, my primary emphasis is on helping to create user-friendly websites at <a href="https://www.eurofins.in/eitsi/" target="_blank">Eurofins</a>.</p>
     </div>
+    <hr>
     <div class="about-tech">
       <p class="fw-bold">Few technologies I've been working with recently: </p>
       <ul class="about-tech-list-1">
@@ -66,32 +67,6 @@ const about = `
     <hr>
     <div class="about-footer">
       <p>This site is created from the ground up utilising a unique framework that was lovingly created <a href="https://github.com/sAVItar02/portfolio-js" target="_blank">entirely in JavaScript</a>.</p>
-    </div>
-  </div>
-`;
-
-const projects = `
-  <div class="project-container flex-center">
-    <div class="project-img-buffer">
-      <img src="./../../public/assets/about-img.jfif" alt="Project Image" />
-    </div>
-    <div class="project-content">
-      <div class="project-tagline fw-bold">Featured Project</div>
-      <div class="project-heading fw-bold">YourStore</div>
-      <div class="project-desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod assumenda fuga illum, quasi
-          eligendi animi officia similique accusamus magnam corrupti!</div>
-      <div class="project-btn-container">
-          <div class="source">
-              <button class="github"><img src="" alt="Github"></button>
-              <button class="hyperlink"><img src="" alt=""></button>
-          </div>
-          <div class="project-tech">
-              <p class="project-tags">HTML</p>
-              <p class="project-tags">CSS</p>
-              <p class="project-tags">JS</p>
-              <p class="project-tags">Node.js</p>
-          </div>
-      </div>
     </div>
   </div>
 `;
@@ -118,6 +93,14 @@ function openProjects() {
   createWindow("Projects", "", "Projects", 80, 60, 5);
   centerWindow("Projects");
 
+  createCard(
+    "Projects",
+    "./../public/assets/projects-imgs/yourStore.png",
+    "YourStore",
+    "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate vel cum ipsa neque perferendis sint, deserunt eos sit eius velit nemo minima, harum enim quia modi maxime excepturi molestias. Quia recusandae exercitationem a vitae. Debitis earum sed voluptates ab! Voluptates?",
+    ["#", "#"],
+    ["HTML", "CSS", "JS", "Node.js"]
+  );
   createCard(
     "Projects",
     "./../../public/assets/about-img.jfif",

@@ -161,6 +161,7 @@ function createCard(id, img, heading, desc, links, tags) {
 
   const imgBuffer = document.createElement("div");
   imgBuffer.classList.add("project-img-buffer");
+  imgBuffer.classList.add("flex-center");
 
   const image = document.createElement("img");
   image.src = img;
@@ -300,6 +301,7 @@ function createWindow(id, text, titleText, h, w, z = 1, imgs) {
   const wTitle = document.createElement("div");
   wTitle.classList.add("window-title");
   wTitle.classList.add("flex-center");
+  wTitle.classList.add("fw-bold");
   wTitle.innerText = titleText;
 
   const wClose = document.createElement("img");

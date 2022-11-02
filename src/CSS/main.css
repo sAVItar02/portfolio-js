@@ -550,3 +550,98 @@ footer {
     width: 25px;
     margin-right: 5px;
 }
+
+/* -------------------------- SETTINGS ------------------------- */
+
+.notice {
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* padding: 1px; */
+    background-color: var(--card-desc-color);
+}
+
+.notice-img {
+    height: 80px;
+    width: auto;
+}
+
+.wallpaper-container {
+    margin: 40px 0;
+}
+
+.settings-container label, .settings-container input {
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+.wallpaper-container input[type="radio"] {
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+    padding: 0;
+}
+
+.wallpaper-container input[type="radio"]:checked + label {
+    outline: 2px solid var(--normal-text);
+    padding: 0;
+    height: 100%;
+}
+
+.wallpaper-img-buffer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.wallpaper-img {
+    aspect-ratio: 16 / 9;
+    height: 100%;
+}
+
+.settings-container h4 {
+    margin-bottom: 20px;
+    font-weight: normal;
+    font-family: agave-bold, monospace;
+}
+
+.input-buffer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.audio-buffer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.audio-buffer h4 {
+    margin: 0 20px 0 0;
+}
+
+.audio-buffer .input-buffer input {
+    display: inline;
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.audio-buffer .input-buffer label {
+    font-size: 1.5rem;
+    font-weight: normal;
+    padding: 5px 15px;
+    border: 2px solid var(--normal-text);
+    margin-right: 10px;
+}
+
+.audio-buffer .input-buffer input:checked + label {
+    background-color: var(--card-desc-color);
+}
+
+.settings-container hr {
+    margin: 40px 0 10px 0;
+}

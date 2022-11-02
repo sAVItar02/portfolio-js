@@ -71,6 +71,8 @@ const about = `
   </div>
 `;
 
+const noticeText = `<img class="notice-img" src="./../../public/assets/cookie.png" alt="cookie image"/> <div>This website uses cookies to delver the best possible experience, by changing any settings you consent to using cookies.</div>`;
+
 function openUrl(url) {
   window.open(url);
 }
@@ -111,6 +113,21 @@ function openProjects() {
   );
 }
 
+function openSettings() {
+  createWindow("Settings", "", "Settings", 60, 50, 5);
+  createSettings(
+    "Settings",
+    [
+      ["./../../public/assets/landscape.gif", "landscape"],
+      ["./../../public/assets/lennsan.gif", "lennsan"],
+      ["./../../public/assets/night.gif", "night"],
+      ["./../../public/assets/nightBridge.gif", "nightBridge"],
+      ["./../../public/assets/sakuraTree.gif", "sakura"],
+    ],
+    noticeText
+  );
+}
+
 window.onload = function () {
   createTaskBar();
   appendMenuElement("About", openAbout);
@@ -123,7 +140,8 @@ window.onload = function () {
   getBattery();
   getTime24();
 
-  openAbout();
+  // openAbout();
+  openSettings();
 
   setInterval(function () {
     updateTime();

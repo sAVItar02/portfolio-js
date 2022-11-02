@@ -247,6 +247,112 @@ function createCard(id, img, heading, desc, links, tags) {
   // console.log(typeof card);
 }
 
+function createSettings(id, imgs, noticeText) {
+  const settings = document.createElement("div");
+  settings.classList.add("settings-container");
+
+  const notice = document.createElement("div");
+  notice.classList.add("notice");
+  notice.innerHTML = noticeText;
+
+  settings.appendChild(notice);
+
+  const wallpaperContainer = document.createElement("div");
+  wallpaperContainer.classList.add("wallpaper-container");
+
+  const h4 = document.createElement("h4");
+  h4.innerText = "Choose a wallpaper";
+
+  const imageBuffer = document.createElement("div");
+  imageBuffer.classList.add("wallpaper-img-buffer");
+
+  imgs.forEach((img) => {
+    const inputBuffer = document.createElement("div");
+    inputBuffer.classList.add("input-buffer");
+    inputBuffer.classList.add("flex-center");
+
+    const input = document.createElement("input");
+    input.classList.add("radio-input");
+    input.id = `${img[1]}`;
+    input.type = "radio";
+    input.value = `${img[1]}`;
+    input.name = "wallpaper";
+
+    const label = document.createElement("label");
+    label.htmlFor = `${img[1]}`;
+
+    const image = document.createElement("img");
+    image.src = `${img[0]}`;
+    image.classList.add("wallpaper-img");
+
+    label.appendChild(image);
+    inputBuffer.appendChild(input);
+    inputBuffer.appendChild(label);
+    imageBuffer.appendChild(inputBuffer);
+  });
+
+  wallpaperContainer.appendChild(h4);
+  wallpaperContainer.appendChild(imageBuffer);
+
+  const audioBuffer = document.createElement("div");
+  audioBuffer.classList.add("audio-buffer");
+
+  const h4_1 = document.createElement("h4");
+  h4_1.innerText = "Enable/Disable Audio";
+
+  audioBuffer.appendChild(h4_1);
+
+  const inputEnable = document.createElement("input");
+  inputEnable.type = "radio";
+  inputEnable.value = "enable";
+  inputEnable.name = "audio";
+  inputEnable.id = "enable";
+
+  const inputLabel = document.createElement("label");
+  inputLabel.htmlFor = "enable";
+  inputLabel.innerText = "Enable";
+
+  const inputBuffer = document.createElement("div");
+  inputBuffer.classList.add("input-buffer");
+
+  inputBuffer.appendChild(inputEnable);
+  inputBuffer.appendChild(inputLabel);
+  audioBuffer.appendChild(inputBuffer);
+
+  const inputDisable = document.createElement("input");
+  inputDisable.id = "disable";
+  inputDisable.value = "disable";
+  inputDisable.name = "audio";
+  inputDisable.type = "radio";
+  inputDisable.checked = "true";
+
+  const inputDisableLabel = document.createElement("label");
+  inputDisableLabel.htmlFor = "disable";
+  inputDisableLabel.innerText = "Disable";
+
+  const inputBuffer_1 = document.createElement("div");
+  inputBuffer_1.classList.add("input-buffer");
+
+  inputBuffer_1.appendChild(inputDisable);
+  inputBuffer_1.appendChild(inputDisableLabel);
+
+  audioBuffer.appendChild(inputBuffer_1);
+
+  settings.appendChild(wallpaperContainer);
+  settings.appendChild(audioBuffer);
+
+  const apply = document.createElement("button");
+  apply.type = "button";
+  apply.id = "apply-settings";
+  apply.innerText = "Apply";
+  apply.classList.add("primary-button");
+
+  settings.appendChild(document.createElement("hr"));
+  settings.appendChild(apply);
+
+  document.getElementById(id).children[1].appendChild(settings);
+}
+
 function createTaskBar() {
   const taskbar = document.createElement("div");
   taskbar.id = "taskbar";

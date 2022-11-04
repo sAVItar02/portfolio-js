@@ -19,6 +19,8 @@ var activeWindow = null;
 
 function changeWallpaper(name) {
   document.body.style.backgroundImage = `url(./../../public/assets/wallpapers/${name}.gif)`;
+  document.body.className = "";
+  document.body.classList.add(`theme-${name}`);
 }
 
 /**
@@ -375,26 +377,6 @@ function createSettings(id, imgs, noticeText) {
     console.log(wallpaper);
     setCookie("wallpaper", wallpaper);
     changeWallpaper(wallpaper);
-    // if (wallpaper == "landscape") {
-    //   setCookie("wallpaper", "landscape");
-    //   changeWallpaper("landscape");
-    // } else if (wallpaper == "lennsan") {
-    //   setCookie("wallpaper", "lennsan");
-    //   changeWallpaper("lennsan");
-    // } else if (wallpaper == "retronator") {
-    //   setCookie("wallpaper", "retronator");
-    //   changeWallpaper("retronator");
-    // } else if (wallpaper == "nightBridge") {
-    //   setCookie("wallpaper", "nightBridge");
-    //   changeWallpaper("nightBridge");
-    // } else if (wallpaper == "sakura") {
-    //   setCookie("wallpaper", "sakura");
-    //   changeWallpaper("sakura");
-    // } else if (wallpaper == "shop") {
-    //   console.log("first");
-    //   setCookie("wallpaper", "shop");
-    //   changeWallpaper("shop");
-    // }
   };
 }
 

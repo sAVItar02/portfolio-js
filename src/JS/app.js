@@ -119,11 +119,9 @@ function openSettings() {
     "Settings",
     [
       ["./../../public/assets/wallpapers/landscape.gif", "landscape"],
-      ["./../../public/assets/wallpapers/lennsan.gif", "lennsan"],
       ["./../../public/assets/wallpapers/retronator.gif", "retronator"],
       ["./../../public/assets/wallpapers/nightBridge.gif", "nightBridge"],
-      ["./../../public/assets/wallpapers/sakura.gif", "sakura"],
-      ["./../../public/assets/wallpapers/shop.gif", "shop"],
+      ["./../../public/assets/wallpapers/factory.gif", "factory"],
     ],
     noticeText
   );
@@ -146,8 +144,7 @@ window.onload = function () {
     changeWallpaper(getCookie("wallpaper"));
   }
 
-  // openAbout();
-  openSettings();
+  openAbout();
 
   setInterval(function () {
     updateTime();

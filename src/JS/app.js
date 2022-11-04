@@ -71,7 +71,7 @@ const about = `
   </div>
 `;
 
-const noticeText = `<img class="notice-img" src="./../../public/assets/cookie.png" alt="cookie image"/> <div>This website uses cookies to delver the best possible experience, by changing any settings you consent to using cookies.</div>`;
+const noticeText = `<img class="notice-img" src="./../../public/assets/cookie.png" alt="cookie image"/> <div>This website uses cookies to deliver the best possible experience, by changing any settings you consent to using cookies.</div>`;
 
 function openUrl(url) {
   window.open(url);
@@ -118,11 +118,12 @@ function openSettings() {
   createSettings(
     "Settings",
     [
-      ["./../../public/assets/landscape.gif", "landscape"],
-      ["./../../public/assets/lennsan.gif", "lennsan"],
-      ["./../../public/assets/night.gif", "night"],
-      ["./../../public/assets/nightBridge.gif", "nightBridge"],
-      ["./../../public/assets/sakuraTree.gif", "sakura"],
+      ["./../../public/assets/wallpapers/landscape.gif", "landscape"],
+      ["./../../public/assets/wallpapers/lennsan.gif", "lennsan"],
+      ["./../../public/assets/wallpapers/retronator.gif", "retronator"],
+      ["./../../public/assets/wallpapers/nightBridge.gif", "nightBridge"],
+      ["./../../public/assets/wallpapers/sakura.gif", "sakura"],
+      ["./../../public/assets/wallpapers/shop.gif", "shop"],
     ],
     noticeText
   );
@@ -136,9 +137,14 @@ window.onload = function () {
       "https://drive.google.com/file/d/10F4z3GeF8h1Jh1eHkQmMvvVpSisNMKRf/view?usp=sharing"
     );
   });
+  appendMenuElement("Settings", openSettings);
   appendMenuElement("Credits", logDummy);
   getBattery();
   getTime24();
+
+  if (getCookie("wallpaper") != null) {
+    changeWallpaper(getCookie("wallpaper"));
+  }
 
   // openAbout();
   openSettings();

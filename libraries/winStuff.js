@@ -17,6 +17,10 @@ var windowCount = 0;
 var windowToDrag = null;
 var activeWindow = null;
 
+function changeWallpaper(name) {
+  document.body.style.backgroundImage = `url(./../../public/assets/wallpapers/${name}.gif)`;
+}
+
 /**
  *
  * @param {String} text Heading which is supposed to appear as the menu item text
@@ -350,7 +354,48 @@ function createSettings(id, imgs, noticeText) {
   settings.appendChild(document.createElement("hr"));
   settings.appendChild(apply);
 
-  document.getElementById(id).children[1].appendChild(settings);
+  if (document.getElementById(id).children[1].children.length == 0) {
+    document.getElementById(id).children[1].appendChild(settings);
+  }
+
+  apply.onclick = function (e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+
+    let audio = document.querySelector("input[name='audio']:checked").value;
+    if (audio == "enable") {
+      setCookie("audio", true);
+    } else {
+      setCookie("audio", false);
+    }
+
+    let wallpaper = document.querySelector(
+      "input[name='wallpaper']:checked"
+    ).value;
+    console.log(wallpaper);
+    setCookie("wallpaper", wallpaper);
+    changeWallpaper(wallpaper);
+    // if (wallpaper == "landscape") {
+    //   setCookie("wallpaper", "landscape");
+    //   changeWallpaper("landscape");
+    // } else if (wallpaper == "lennsan") {
+    //   setCookie("wallpaper", "lennsan");
+    //   changeWallpaper("lennsan");
+    // } else if (wallpaper == "retronator") {
+    //   setCookie("wallpaper", "retronator");
+    //   changeWallpaper("retronator");
+    // } else if (wallpaper == "nightBridge") {
+    //   setCookie("wallpaper", "nightBridge");
+    //   changeWallpaper("nightBridge");
+    // } else if (wallpaper == "sakura") {
+    //   setCookie("wallpaper", "sakura");
+    //   changeWallpaper("sakura");
+    // } else if (wallpaper == "shop") {
+    //   console.log("first");
+    //   setCookie("wallpaper", "shop");
+    //   changeWallpaper("shop");
+    // }
+  };
 }
 
 function createTaskBar() {

@@ -62,7 +62,7 @@ html {
 body {
     min-height: 100vh;
     width: 100%;
-    background-image: url("./../../public/assets/landscape.gif");
+    background-image: url("./../../public/assets/wallpapers/landscape.gif");
     background-repeat: no-repeat;
     background-size: cover;
     font-family: agave, monospace;
@@ -565,6 +565,25 @@ footer {
 .notice-img {
     height: 80px;
     width: auto;
+    animation: upDown 3s step-end infinite;
+}
+
+@keyframes upDown {
+    0% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-4px);
+    }
+    50% {
+        transform: translateY(0px);
+    }
+    75% {
+        transform: translateY(4px);
+    }
+    100% {
+        transform: translateY(0);
+    }
 }
 
 .wallpaper-container {

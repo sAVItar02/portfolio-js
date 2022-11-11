@@ -119,7 +119,7 @@ function openProjects() {
   );
   createCard(
     "Projects",
-    "./../public/assets/projects-imgs/Ukiyo.png",
+    "./../public/assets/projects-imgs/flights.png",
     "Flights",
     "The main idea of the project is building a Flight Booking System that is a computerized system used to store  retrieve information and conduction transactions related to air travel by the use of an extensive database",
     [

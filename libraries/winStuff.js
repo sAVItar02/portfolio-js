@@ -366,17 +366,16 @@ function createSettings(id, imgs, noticeText) {
 
     let audio = document.querySelector("input[name='audio']:checked").value;
     if (audio == "enable") {
-      setCookie("audio", true);
+      setCookie("audio", true, 30);
     } else {
-      setCookie("audio", false);
+      setCookie("audio", false, 30);
     }
 
-    let wallpaper = document.querySelector(
-      "input[name='wallpaper']:checked"
-    ).value;
-    console.log(wallpaper);
-    setCookie("wallpaper", wallpaper);
-    changeWallpaper(wallpaper);
+    let wallpaper = document.querySelector("input[name='wallpaper']:checked");
+    if (wallpaper) {
+      setCookie("wallpaper", wallpaper.value, 30);
+      changeWallpaper(wallpaper.value);
+    }
   };
 }
 

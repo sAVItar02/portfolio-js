@@ -1,7 +1,8 @@
 function setCookie(name, value, expDays) {
   const d = new Date();
   d.setTime(d.getTime() + expDays * 24 * 60 * 60 * 1000);
-  document.cookie = `$${name}=${value};expires=${d};`;
+  console.log(d);
+  document.cookie = `$${name}=${value};expires=${d.toUTCString()};`;
 }
 
 function getCookie(name) {

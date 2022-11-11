@@ -99,17 +99,34 @@ function openProjects() {
     "Projects",
     "./../public/assets/projects-imgs/yourStore.png",
     "YourStore",
-    "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate vel cum ipsa neque perferendis sint, deserunt eos sit eius velit nemo minima, harum enim quia modi maxime excepturi molestias. Quia recusandae exercitationem a vitae. Debitis earum sed voluptates ab! Voluptates?",
-    ["#", "#"],
-    ["HTML", "CSS", "JS", "Node.js"]
+    "YourStore is a local e-commerce store to help local shops repair their losses. The Online Grocery System application enables shopkeepers to set up online shops; customers to browse through the shops, and maintain lists of shop categories. The website enables shopkeepers to manage the items in the shop and help customers purchase them online without visiting the shop physically. ",
+    [
+      "https://github.com/sAVItar02/YourStore-Frontend",
+      "https://savitar02.github.io/YourStore-Frontend/home",
+    ],
+    ["HTML", "CSS", "JS", "Node.js", "Express", "MongoDB"]
   );
   createCard(
     "Projects",
-    "./../../public/assets/about-img.jfif",
-    "YourStore",
-    "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate vel cum ipsa neque perferendis sint, deserunt eos sit eius velit nemo minima, harum enim quia modi maxime excepturi molestias. Quia recusandae exercitationem a vitae. Debitis earum sed voluptates ab! Voluptates?",
-    ["#", "#"],
-    ["HTML", "CSS", "JS", "Node.js"]
+    "./../public/assets/projects-imgs/Ukiyo.png",
+    "Ukiyo",
+    "Ukiyo is a discord bot for weebs! ukiyo lets users to recommend/suggest anime to other users add anime to watch, watched, planning and recommended lists, allows users to browse upcoming, ongoing, trending anime. ukiyo also allows users to browse specific anime and even set reminders for the new episodes of ongoing anime!",
+    [
+      "https://github.com/sAVItar02/Ukiyo",
+      "https://discord.com/oauth2/authorize?client_id=780383801393938442&scope=bot&permissions=8",
+    ],
+    ["JS", "Discord.js", "Node.js", "Express.js", "MongoDB"]
+  );
+  createCard(
+    "Projects",
+    "./../public/assets/projects-imgs/Ukiyo.png",
+    "Flights",
+    "The main idea of the project is building a Flight Booking System that is a computerized system used to store  retrieve information and conduction transactions related to air travel by the use of an extensive database",
+    [
+      "https://github.com/sAVItar02/Flights",
+      "https://savitar02.github.io/Flights/startup.html",
+    ],
+    ["HTMl", "CSS", "JS", "JQuery", "Node.js", "MongoDB"]
   );
 }
 

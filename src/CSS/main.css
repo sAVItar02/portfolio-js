@@ -578,13 +578,13 @@ footer {
     flex-direction: row-reverse;
 }
 
-.project-container:nth-last-of-type(odd) > .project-content {
+.project-container:nth-last-of-type(even) > .project-content {
     margin-left: 0;
     margin-right: 20px;
     text-align: right;
 }
 
-.project-container:nth-last-of-type(odd) > .project-content > .project-btn-container > .project-tags {
+.project-container:nth-last-of-type(even) > .project-content > .project-btn-container > .project-tags {
     justify-content: flex-end;
 }
 

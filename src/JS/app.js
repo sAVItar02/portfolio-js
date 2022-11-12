@@ -216,4 +216,12 @@ window.onload = function () {
     120,
     openProjects
   );
+  createDesktopApp(
+    "settings",
+    "./../public/assets/settings-icon.png",
+    "Settings",
+    120,
+    120,
+    openSettings
+  );
 };

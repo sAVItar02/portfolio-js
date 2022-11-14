@@ -71,6 +71,14 @@ const about = `
   </div>
 `;
 
+const credits = `
+  <div class="container">
+    <div class="banner-buffer">
+      <img src="./../../public/art-credits.gif" alt="Credits Banner"/>
+    </div>
+  </div>
+`;
+
 const noticeText = `<img class="notice-img" src="./../../public/assets/cookie.png" alt="cookie image"/> <div>This website uses cookies to deliver the best possible experience, by changing any settings you consent to using cookies.</div>`;
 
 function openUrl(url) {

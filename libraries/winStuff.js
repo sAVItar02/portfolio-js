@@ -32,7 +32,6 @@ window.mobileAndTabletCheck = function () {
       check = true;
   })(navigator.userAgent || navigator.vendor || window.opera);
   isMobileBrowser = check;
-  console.log(isMobileBrowser);
   return check;
 };
 
@@ -542,13 +541,11 @@ function createDesktopApp(id, img, title, h, w, action) {
     app.ondblclick = function (e) {
       e.stopImmediatePropagation();
       action();
-      console.log("Hello");
     };
   else
     app.onclick = function (e) {
       e.stopImmediatePropagation();
       action();
-      console.log("Hello");
     };
 
   app.onmouseenter = function (e) {

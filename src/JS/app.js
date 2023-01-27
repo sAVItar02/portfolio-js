@@ -5,21 +5,8 @@ document.getElementById("root").onclick = function (e) {
   hideMenu();
 };
 
-const contact = `
-  <div class="contact-info">
-    <h4>You can reach me on: </h4>
-    <ul class="contact-list">
-      <li>Email: <a href="mailto:blr.aviral@gmail.com">blr.aviral@gmail.com</a></li>
-      <li>Phone: <a href="tel:+919591722997">+91 9591722997</a></li>
-      <li>Social: <a href="https://www.linkedin.com/in/aviral-s-79955a119/" target="_blank">LinkedIn</a></li>
-    </ul>
-  </div>
-
-  <br/>
-  <hr>
-  <br/>
-
-  <div class="contact-form">
+{
+  /* <div class="contact-form">
     <p>Or Send me a message and I'll try to get back to you ASAP!</p>
     <form>
       <div class="form-group">
@@ -36,7 +23,22 @@ const contact = `
       </div>
       <button type="submit" class="primary-button" id="contact-form-button">Submit</button>
     </form>
+  </div> */
+}
+
+const contact = `
+  <div class="contact-info">
+    <h4>You can reach me on: </h4>
+    <ul class="contact-list">
+      <li>Email: <a href="mailto:blr.aviral@gmail.com">blr.aviral@gmail.com</a></li>
+      <li>Phone: <a href="tel:+919591722997">+91 9591722997</a></li>
+      <li>Social: <a href="https://www.linkedin.com/in/aviral-s-79955a119/" target="_blank">LinkedIn</a>, <a href="https://github.com/sAVItar02">Github</a></li>
+    </ul>
   </div>
+
+  <br/>
+  <hr>
+  <br/>
 `;
 
 const about = `
@@ -72,10 +74,22 @@ const about = `
 `;
 
 const credits = `
-  <div class="container">
-    <div class="banner-buffer">
-      <img src="./../../public/art-credits.gif" alt="Credits Banner"/>
-    </div>
+  <div class="banner-buffer">
+    <div class="banner-img"></div>
+  </div>
+  <div class="credits-container">
+    <ul class="list">
+      <li class="list-item">Main Background (Landscape Gif) : <a href="https://in.pinterest.com/pin/667166132311196309/">@anasabdin</a></li>
+      <li class="list-item">Japanese City Background Gif : <a href="https://in.pinterest.com/pin/726768458635723246/">@Retronator</a></li>
+      <li class="list-item">Night City Background Gif : <a href="https://in.pinterest.com/pin/726768458635317793/">@Aliciel</a></li>
+      <li class="list-item">Factory Background Gif : <a href="https://in.pinterest.com/pin/726768458635723269/">@A Cidade Branca</a></li>
+      <li class="list-item">About Image : <a href="https://in.pinterest.com/pin/366621225903655441/">@leeoccleshaw</a></li>
+      <li class="list-item">Github Icon : <a href="http://pixelartmaker.com/art/d7e4e1e509c728d">Pixel Art Maker</a></li>
+      <li class="list-item">Settings Icon : <a href="http://pixelartmaker.com/art/ac6c0486a959d41">Pixel Art Maker</a></li>
+      <li class="list-item">Cookie Image : <a href="http://pixelartmaker.com/art/8d93c7834a63bf9">Pixel Art Maker</a></li>
+      <li class="list-item">Font : <a href="https://github.com/blobject/agave">Agave</a></li>
+      <li class="list-item">Battery Icon : <a href="https://fontawesome.com/search?q=battery&o=r">Fontawesome</a></li>
+    </ul>
   </div>
 `;
 
@@ -86,12 +100,12 @@ function openUrl(url) {
 }
 
 function openContact() {
-  createWindow("Contact", contact, "Contact", 65, 40, 5);
+  createWindow("Contact", contact, "Contact", 25, 40, 5);
   // centerWindow("Contact");
 
-  document.getElementById("contact-form-button").onclick = function (e) {
-    e.preventDefault();
-  };
+  // document.getElementById("contact-form-button").onclick = function (e) {
+  //   e.preventDefault();
+  // };
 }
 
 function openAbout() {
@@ -152,6 +166,10 @@ function openSettings() {
   );
 }
 
+function openCredits() {
+  createWindow("Credits", credits, "Credits", 50, 30, 5);
+}
+
 window.onload = function () {
   createTaskBar();
   appendMenuElement("About", openAbout);
@@ -161,7 +179,7 @@ window.onload = function () {
     );
   });
   appendMenuElement("Settings", openSettings);
-  appendMenuElement("Credits", logDummy);
+  appendMenuElement("Credits", openCredits);
   getBattery();
   getTime24();
 

@@ -191,7 +191,7 @@ body {
 
 
 
-/* ------------------------- UNIVERSAL STYLES ------------------------- */
+/* !------------------------- UNIVERSAL STYLES ------------------------- */
 
 hr {
     background-color: var(--scrollbar-thumb-color);
@@ -256,7 +256,7 @@ img {
     max-height: 200px;
 }
 
-/* ------------------------- UTILITY CLASSES -------------------------- */
+/* !------------------------- UTILITY CLASSES -------------------------- */
 .flex-center {
     display: flex;
     justify-content: center;
@@ -291,7 +291,7 @@ img {
     font-family: agave-bold, monospace;
 }
 
-/* -------------------------------------------------------------------- */
+/* !-------------------------------------------------------------------- */
 
 #taskbar {
     height: 35px;
@@ -567,7 +567,7 @@ footer {
     width: auto;
     margin: 0 5px;
 }
-/* ------------------- PROJECTS ---------------------- */
+/* !------------------- PROJECTS ---------------------- */
 
 .project-container {
     background-color: var(--card-bg-color);
@@ -651,7 +651,7 @@ footer {
     margin-right: 5px;
 }
 
-/* -------------------------- SETTINGS ------------------------- */
+/* !-------------------------- SETTINGS ------------------------- */
 
 .notice {
     font-size: 1.5rem;
@@ -711,7 +711,7 @@ footer {
 
 .wallpaper-img-buffer {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr) );
     gap: 10px;
 }
 
@@ -764,3 +764,97 @@ footer {
 .settings-container hr {
     margin: 40px 0 10px 0;
 }
+
+/* !-------------------------- CREDITS ------------------------- */
+
+.credits-container {
+    height: fit-content;
+    width: 100%;
+    padding: 20px 30px;
+}
+
+.list-item {
+    line-height: 1.5;
+}
+
+#Credits > .window-body {
+    padding: 0px;
+}
+
+.banner-buffer {
+    width: 100%;
+    height: 100px;
+}
+
+.banner-img {
+    height: 100%;
+    width: 100%;
+    background-image: url('./../../public/assets/art-credits-2.webp');
+    background-size: contain;
+}
+
+
+/* !------------------------- MEDIA QUERIES --------------------------- */
+
+@media screen and (max-width: 550px), screen and (orientation: portrait) {
+    .audio-buffer {
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 1000px), screen and (orientation: portrait) {
+    .project-container {
+        flex-direction: column !important;
+        height: fit-content !important;
+    }
+
+    .project-img-buffer {
+        margin-bottom: 20px !important;
+        max-width: 150px;
+        max-height: 150px;
+    }
+
+    .project-img-buffer > img {
+        height: 150px;
+        width: 150px;
+    }
+
+    .project-desc {
+        min-height: 125px !important;
+        max-height: fit-content !important;
+        height: fit-content !important;
+    }
+
+    .project-tags {
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 1200px), screen and (orientation: portrait) {
+    .window {
+        min-width: 92vw !important;
+        max-width: 97vw !important;
+        max-height: 75vh !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+    }
+
+    #menu {
+        min-width: 70vw !important;
+        max-width: 80vw !important;
+    }
+
+    .taskbar-btn {
+        display: none !important;
+    }
+}
+
+@media screen and (max-height: 750px) {
+    #root {
+        flex-wrap: wrap;
+    }
+}
+
+
+

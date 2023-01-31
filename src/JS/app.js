@@ -31,7 +31,6 @@ const contact = `
     <h4>You can reach me on: </h4>
     <ul class="contact-list">
       <li>Email: <a href="mailto:blr.aviral@gmail.com">blr.aviral@gmail.com</a></li>
-      <li>Phone: <a href="tel:+919591722997">+91 9591722997</a></li>
       <li>Social: <a href="https://www.linkedin.com/in/aviral-s-79955a119/" target="_blank">LinkedIn</a>, <a href="https://github.com/sAVItar02">Github</a></li>
     </ul>
   </div>

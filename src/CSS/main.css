@@ -279,6 +279,7 @@ img {
     font-size: 1.7rem;
     font-family: agave-bold, monospace;
     padding: 5px 15px;
+    cursor: pointer;
 }
 
 .primary-button:focus {
@@ -358,6 +359,7 @@ img {
     border-right: 2px solid var(--menuButton-border-bottom);
     font-size: 1.7rem;
     font-family: agave-bold, monospace;
+    cursor: pointer;
 }
 
 #menuButton.active, .taskbar-btn.active {
@@ -701,6 +703,12 @@ footer {
     opacity: 0;
     pointer-events: none;
     padding: 0;
+}
+
+.wallpaper-container input[type="radio"]:focus + label{
+    outline: 2px solid var(--title-text);
+    padding: 0;
+    height: 100%;
 }
 
 .wallpaper-container input[type="radio"]:checked + label {

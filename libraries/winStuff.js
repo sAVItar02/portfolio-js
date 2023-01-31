@@ -303,6 +303,13 @@ function createSettings(id, imgs, noticeText) {
     input.type = "radio";
     input.value = `${img[1]}`;
     input.name = "wallpaper";
+    input.onclick = function (e) {
+      console.log("Hello");
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      setCookie("wallpaper", `${img[1]}`, 30);
+      changeWallpaper(`${img[1]}`);
+    };
 
     const label = document.createElement("label");
     label.htmlFor = `${img[1]}`;
@@ -380,23 +387,23 @@ function createSettings(id, imgs, noticeText) {
     document.getElementById(id).children[1].appendChild(settings);
   }
 
-  apply.onclick = function (e) {
-    e.preventDefault();
-    e.stopImmediatePropagation();
+  // apply.onclick = function (e) {
+  //   e.preventDefault();
+  //   e.stopImmediatePropagation();
 
-    let audio = document.querySelector("input[name='audio']:checked").value;
-    if (audio == "enable") {
-      setCookie("audio", true, 30);
-    } else {
-      setCookie("audio", false, 30);
-    }
+  //   let audio = document.querySelector("input[name='audio']:checked").value;
+  //   if (audio == "enable") {
+  //     setCookie("audio", true, 30);
+  //   } else {
+  //     setCookie("audio", false, 30);
+  //   }
 
-    let wallpaper = document.querySelector("input[name='wallpaper']:checked");
-    if (wallpaper) {
-      setCookie("wallpaper", wallpaper.value, 30);
-      changeWallpaper(wallpaper.value);
-    }
-  };
+  //   let wallpaper = document.querySelector("input[name='wallpaper']:checked");
+  //   if (wallpaper) {
+  //     setCookie("wallpaper", wallpaper.value, 30);
+  //     changeWallpaper(wallpaper.value);
+  //   }
+  // };
 }
 
 function createTaskBar() {

@@ -340,6 +340,14 @@ function createSettings(id, imgs, noticeText) {
   inputEnable.value = "enable";
   inputEnable.name = "audio";
   inputEnable.id = "enable";
+  inputEnable.onclick = function (e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    setCookie("audio", true, 30);
+    inputEnable.checked = "true";
+    inputLabel.style.backgroundColor = "var(--card-desc-color)";
+    inputDisableLabel.style.backgroundColor = "transparent";
+  };
 
   const inputLabel = document.createElement("label");
   inputLabel.htmlFor = "enable";
@@ -358,6 +366,14 @@ function createSettings(id, imgs, noticeText) {
   inputDisable.name = "audio";
   inputDisable.type = "radio";
   inputDisable.checked = "true";
+  inputDisable.onclick = function (e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    setCookie("audio", false, 30);
+    inputDisable.checked = "true";
+    inputDisableLabel.style.backgroundColor = "var(--card-desc-color)";
+    inputLabel.style.backgroundColor = "transparent";
+  };
 
   const inputDisableLabel = document.createElement("label");
   inputDisableLabel.htmlFor = "disable";
@@ -374,14 +390,14 @@ function createSettings(id, imgs, noticeText) {
   settings.appendChild(wallpaperContainer);
   settings.appendChild(audioBuffer);
 
-  const apply = document.createElement("button");
-  apply.type = "button";
-  apply.id = "apply-settings";
-  apply.innerText = "Apply";
-  apply.classList.add("primary-button");
+  // const apply = document.createElement("button");
+  // apply.type = "button";
+  // apply.id = "apply-settings";
+  // apply.innerText = "Apply";
+  // apply.classList.add("primary-button");
 
   settings.appendChild(document.createElement("hr"));
-  settings.appendChild(apply);
+  // settings.appendChild(apply);
 
   if (document.getElementById(id).children[1].children.length == 0) {
     document.getElementById(id).children[1].appendChild(settings);

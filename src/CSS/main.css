@@ -374,6 +374,7 @@ img {
     top: 35px;
     left: 0;
     width: 280px;
+    z-index: 100;
     height: fit-content;
     background-color: var(--taskbar-bg);
     display: none;
@@ -508,7 +509,12 @@ img {
 .app-icon {
     object-fit: cover;
     height: 55%;
-    width: auto;
+    width: 55%;
+}
+
+#iconDrawer {
+    flex-wrap: wrap;
+    width: fit-content;
 }
 
 .app-title {

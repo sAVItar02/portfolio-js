@@ -203,6 +203,7 @@ hr {
 
 a {
     color: var(--link-color);
+    cursor: pointer;
 }
 
 ul {
@@ -556,6 +557,10 @@ img {
 .about-tech-list-1, .about-tech-list-2 {
     float: left;
     margin: 10px 20px 0 30px;
+}
+
+.about-focus > p {
+    line-height: 1.1;
 }
 
 footer {

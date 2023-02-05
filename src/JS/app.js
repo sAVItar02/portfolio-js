@@ -49,7 +49,7 @@ const about = `
       <p class="fw-bold">Hi, I'm Aviral 😄</p>
       <p>I'm a 20-year-old undergrad student in CSE and a Web Developer living in <a href="https://en.wikipedia.org/wiki/Bangalore">Bengaluru</a></p>
       <p>I enjoy building pages that live on the web, my interest in web development started back in 2019 when i took a <a href="https://www.udemy.com/course/the-web-developer-bootcamp/" target="_blank">Web Development Course</a> out of curiosity and ended up learning a lot about the web.</p>
-      <p>Today, after having the opportunity to intern and learn at  <a href="https://www.linkedin.com/company/ultrainstinct-ai/" target="_blank">UltraInstinct</a> and <a href="https://www.linkedin.com/company/ascendance-st/mycompany/" target="_blank">Ascendance</a>, my primary emphasis is on helping to create user-friendly websites at <a href="https://www.eurofins.in/eitsi/" target="_blank">Eurofins</a>.</p>
+      <p>Today, after having the opportunity to intern and learn at  <a href="https://www.linkedin.com/company/ultrainstinct-ai/" target="_blank">UltraInstinct</a>, <a href="https://www.linkedin.com/company/ascendance-st/mycompany/" target="_blank">Ascendance</a> and <a href="https://www.eurofins.in/eitsi/" target="_blank">Eurofins</a>, My primary focus is working on Intelligent Automation, chatbots and AI at <a href="https://www.linkedin.com/company/pwc-india/">PwC</a> </p>
     </div>
     <hr>
     <div class="about-tech">
@@ -88,6 +88,7 @@ const credits = `
       <li class="list-item">Cookie Image : <a href="http://pixelartmaker.com/art/8d93c7834a63bf9">Pixel Art Maker</a></li>
       <li class="list-item">Font : <a href="https://github.com/blobject/agave">Agave</a></li>
       <li class="list-item">Battery Icon : <a href="https://fontawesome.com/search?q=battery&o=r">Fontawesome</a></li>
+      <li class="list-item">Design Credits : <a href="https://jewelcodes.io/">@jewelcodes</a></li>
     </ul>
   </div>
 `;

@@ -45,8 +45,8 @@ function changeWallpaper(name) {
 
 /**
  *
- * @param {String} text Heading which is supposed to appear as the menu item text
- * @param {function} handler Handler fucntion which runs upon the menu item click
+ * @param {String} text - Heading which is supposed to appear as the menu item text
+ * @param {function} handler - Handler fucntion which runs upon the menu item click
  */
 function appendMenuElement(text, handler) {
   const menu = document.getElementById("menu");
@@ -66,6 +66,9 @@ function appendMenuElement(text, handler) {
   menu.appendChild(menuItem);
 }
 
+/**
+ * @brief Toggles the taskbar menu
+ */
 function toggleMenu() {
   const menu = document.getElementById("menu");
   const menuButton = document.getElementById("menuButton");
@@ -79,11 +82,18 @@ function toggleMenu() {
   }
 }
 
+/**
+ * @brief Hides the taskbar menu
+ */
 function hideMenu() {
   document.getElementById("menu").style.display = "none";
   document.getElementById("menuButton").classList.remove("active");
 }
 
+/**
+ * @brief Brings the current or clicked window at the front
+ * @param {string} id - id of the window to show
+ */
 function setWindowActive(id) {
   document.querySelectorAll(".window").forEach((w) => {
     if (w.id == id) {
@@ -100,18 +110,33 @@ function setWindowActive(id) {
   });
 }
 
+/**
+ * @brief shows the minimized window
+ * @param {String} id - id of the window to show
+ * @param {String} taskbarButton - taskbar button associated with the window in question
+ */
 function showWindow(id, taskbarButton) {
   document.getElementById(id).style.visibility = "visible";
   taskbarButton.classList.add("active");
   setWindowActive(id);
 }
 
+/**
+ * @brief Minimizes the window i.e hides the window
+ * @param {String} id - id of the window to hide
+ * @param {String} taskbarButton - taskbar button associated with the window in question
+ */
 function hideWindow(id, taskbarButton) {
   document.getElementById(id).style.visibility = "hidden";
   taskbarButton.classList.remove("active");
   setWindowActive(null);
 }
 
+/**
+ * @brief Toggles the window, minimize/maximize the window
+ * @param {String} id - id of the window to toggle
+ * @param {String} taskbarButton - taskbar button associated with the window in question
+ */
 function toggleWindow(id, taskbarButton) {
   if (
     document.getElementById(id).style.visibility == "visible" ||
@@ -123,12 +148,20 @@ function toggleWindow(id, taskbarButton) {
   }
 }
 
+/**
+ * @brief Destroys the window, i.e removes the window from the dom
+ * @param {String} id - id of the window to destroy
+ * @param {String} taskbarButton - taskbar button associated with the window in question
+ */
 function destroyWindow(id, taskbarButton) {
   document.getElementById(id).remove();
   taskbarButton.remove();
   windowCount--;
 }
 
+/**
+ * @brief finds a random position on the screen to create the window
+ */
 function getRandomWindowPosition() {
   let xOriginMin = window.innerWidth - window.innerWidth * 0.85;
   let xOriginMax = window.innerWidth - window.innerWidth * 0.65;
@@ -145,6 +178,10 @@ function getRandomWindowPosition() {
   return [randomX, randomY];
 }
 
+/**
+ * @brief Center the window on the screen
+ * @param {String} id - id of the window to center
+ */
 function centerWindow(id) {
   let win = document.getElementById(id);
 
@@ -155,6 +192,10 @@ function centerWindow(id) {
   win.style.left = w + "px";
 }
 
+/**
+ * @brief Make and alert box
+ * @param {String} id - this id will be assigned to the new alert box
+ */
 function makeAlert(id) {
   const w = document.getElementById(id);
   const taskbarButton = document.getElementById(`${id}-button`);
@@ -180,6 +221,15 @@ function makeAlert(id) {
   w.children[1].appendChild(alertBody);
 }
 
+/**
+ * @brief Create a card item
+ * @param {String} id - this id will be assigned to the card created
+ * @param {String} img - card image (will show up ont the side)
+ * @param {String} heading - Card heading (main heading of the card)
+ * @param {String} desc - Description text explaining about the card item
+ * @param {String} links - Links to external sites (if needed)
+ * @param {String} tags - tags (if needed) (they appear like labels)
+ */
 function createCard(id, img, heading, desc, links, tags) {
   const card = document.createElement("div");
   card.classList.add("project-container");
@@ -273,6 +323,12 @@ function createCard(id, img, heading, desc, links, tags) {
   // console.log(typeof card);
 }
 
+/**
+ * @brief Create Setting window
+ * @param {String} id - this id will be assigned to the setting menu created
+ * @param {String} imgs - these images appear for wallpaper selection
+ * @param {String} noticeText - text which shows up on the notice section of the settings page
+ */
 function createSettings(id, imgs, noticeText) {
   const settings = document.createElement("div");
   settings.classList.add("settings-container");
@@ -422,6 +478,9 @@ function createSettings(id, imgs, noticeText) {
   // };
 }
 
+/**
+ * @brief Create the taskbar at the top of the screen
+ */
 function createTaskBar() {
   const taskbar = document.createElement("div");
   taskbar.id = "taskbar";
@@ -458,6 +517,16 @@ function createTaskBar() {
   document.body.appendChild(menu);
 }
 
+/**
+ * @brief Create a window to show required content
+ * @param {String} id - this id will be assigned to the new window created
+ * @param {String} text - text/html which is appended to the body of the window (acts as the main content)
+ * @param {String} titleText - title of the new window created
+ * @param {String} h - height of the window being created in "vh"
+ * @param {String} w - width of the window being created in "vw"
+ * @param {String} z - z index of the window being created
+ * @param {String} imgs - not implemented yet!
+ */
 function createWindow(id, text, titleText, h, w, z = 1, imgs) {
   if (document.getElementById(id)) {
     showWindow(id, document.getElementById(`${id}-button`));
@@ -465,6 +534,15 @@ function createWindow(id, text, titleText, h, w, z = 1, imgs) {
   }
 
   windowCount++;
+
+  // !---------- BSOD EASTER EGG ---------------
+  if (windowCount >= 5) {
+    setTimeout(showBSOD(), 3000);
+  }
+
+  console.log(windowCount);
+  // !------------------------------------------
+
   const currentWindowId = id;
   const win = document.createElement("div");
   win.id = currentWindowId;
@@ -533,6 +611,15 @@ function createWindow(id, text, titleText, h, w, z = 1, imgs) {
   showWindow(currentWindowId, wTaskbarButton);
 }
 
+/**
+ * @brief create a desktop icon which can be clicked to open windows
+ * @param {String} id - this id will be assigned to the desktop being created
+ * @param {String} img - this image will be used as the app icon
+ * @param {String} title - title text which will be displayed for the icon
+ * @param {String} h - height of the desktop icon in "vh"
+ * @param {String} w - width of the disktop icon in "vw"
+ * @param {String} action - action (function) which will be called when the app is clicked
+ */
 function createDesktopApp(id, img, title, h, w, action) {
   const app = document.createElement("div");
   app.id = id;

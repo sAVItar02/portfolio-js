@@ -537,7 +537,7 @@ function createWindow(id, text, titleText, h, w, z = 1, imgs) {
 
   // !---------- BSOD EASTER EGG ---------------
   if (windowCount >= 5) {
-    setTimeout(showBSOD(), 3000);
+    // setTimeout(showBSOD, 3000);
   }
 
   console.log(windowCount);

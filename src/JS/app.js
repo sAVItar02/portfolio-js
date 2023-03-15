@@ -37,19 +37,19 @@ const contact = `
   <hr style="margin-top: 10px;">
   <div class="contact-form">
     <p>Or Send me a message and I'll try to get back to you ASAP!</p>
-    <form name="contact" method="POST" data-netlify="true" onSubmit="submit">
+    <form name="contact" method="POST" data-netlify="true" onsubmit="handleSubmit">
       <input type="hidden" name="contact" value="contact" />
       <div class="form-group">
         <label for="name-input">Name*</label>
-        <input type="text" required id="name-input">
+        <input type="text" required id="name">
       </div>
       <div class="form-group">
         <label for="email-input">Email*</label>
-        <input type="email" required id="email-input">
+        <input type="email" required id="email">
       </div>
       <div class="form-group">
         <label for="message-input">Message*</label>
-        <textarea id="message-input" rows="6" required></textarea>
+        <textarea id="message" rows="6" required></textarea>
       </div>
       <button type="submit" class="primary-button" id="contact-form-button">Submit</button>
     </form>
@@ -123,8 +123,36 @@ function openContact() {
   createWindow("Contact", contact, "Contact", 64, 40, 5);
   // centerWindow("Contact");
 
-  // document.getElementById("contact-form-button").onclick = function (e) {
-  //   e.preventDefault();
+  document.getElementById("contact-form-button").onclick = function (e) {
+    e.preventDefault();
+    // const myForm = e.target;
+    const formData = new FormData();
+    formData.append("name", document.querySelector("#name").value);
+    formData.append("email", document.querySelector("#email").value);
+    formData.append("message", document.querySelector("#message").value);
+    // console.log(formData);
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString(),
+    })
+      .then(() => navigate("/thank-you/"))
+      .catch((error) => alert(error));
+  };
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+
+  //   const myForm = event.target;
+  //   const formData = new FormData(myForm);
+
+  //   fetch("/", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/x-www-form-urlencoded" },
+  //     body: new URLSearchParams(formData).toString(),
+  //   })
+  //     .then(() => navigate("/thank-you/"))
+  //     .catch((error) => alert(error));
   // };
 }
 

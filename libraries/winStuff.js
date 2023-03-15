@@ -662,3 +662,58 @@ function createDesktopApp(id, img, title, h, w, action) {
     playHover();
   };
 }
+
+function createAlert(id, titleText, info, h, w, z) {
+  const win = document.createElement("div");
+  win.id = id;
+  win.classList.add("window");
+  win.style.height = h + "vh";
+  win.style.width = w + "vw";
+  win.style.zIndex = z;
+
+  const wTitle = document.createElement("div");
+  wTitle.classList.add("window-title");
+  wTitle.classList.add("flex-center");
+  wTitle.classList.add("fw-bold");
+  wTitle.innerText = titleText;
+
+  const overlay = document.createElement("div");
+  overlay.classList.add("overlay");
+  win.style.height = h + "vh";
+  win.style.width = w + "vw";
+  win.style.zIndex = z;
+
+  const alertBody = document.createElement("div");
+  alertBody.classList.add("window-body");
+
+  const alertInfo = document.createElement("p");
+  alertInfo.textContent = info;
+
+  const hr = document.createElement("hr");
+  hr.classList.add("hr");
+  hr.style.margin = "10px 0";
+
+  const alertButton = document.createElement("button");
+  alertButton.classList.add("primary-button");
+  alertButton.textContent = "Okay";
+
+  win.appendChild(wTitle);
+  alertBody.appendChild(alertInfo);
+  alertBody.appendChild(hr);
+  alertBody.appendChild(alertButton);
+  win.appendChild(alertBody);
+
+  win.style.top = "50%";
+  win.style.left = "50%";
+  win.style.transform = "translate(-50%, -50%)";
+
+  document.body.appendChild(overlay);
+  document.body.appendChild(win);
+
+  alertButton.onclick = function (e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    win.remove();
+    overlay.remove();
+  };
+}

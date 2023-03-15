@@ -438,6 +438,17 @@ img {
     margin-left: 5px;
 }
 
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    pointer-events: all;
+}
+
 .window {
     position: fixed;
     background-color: var(--window-body-color);
@@ -535,6 +546,14 @@ img {
 
 .form-group {
     padding-bottom: 15px;
+}
+
+.form-error {
+    display: none;
+    font-size: 14px;
+    padding: 8px;
+    background-color: #EC7063;
+    margin-bottom: 10px;
 }
 
 .about-container > hr {

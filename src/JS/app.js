@@ -5,26 +5,27 @@ document.getElementById("root").onclick = function (e) {
   hideMenu();
 };
 
-// {
+// <hr style="margin-top: 10px;">
 //   <div class="contact-form">
 //     <p>Or Send me a message and I'll try to get back to you ASAP!</p>
-//     <form>
+//     <form name="contact" method="POST" data-netlify="true" id="contact-form">
+//       <input type="hidden" name="form-name" value="contact" />
 //       <div class="form-group">
 //         <label for="name-input">Name*</label>
-//         <input type="text" required id="name-input">
+//         <input type="text" required id="name">
 //       </div>
 //       <div class="form-group">
 //         <label for="email-input">Email*</label>
-//         <input type="email" required id="email-input">
+//         <input type="email" required id="email">
 //       </div>
 //       <div class="form-group">
 //         <label for="message-input">Message*</label>
-//         <textarea id="message-input" rows="6" required></textarea>
+//         <textarea id="message" rows="6" required></textarea>
 //       </div>
+//       <div class="form-error">Oops Looks like you left a field empty, please fill out all the fields.</div>
 //       <button type="submit" class="primary-button" id="contact-form-button">Submit</button>
 //     </form>
 //   </div>
-// }
 
 const contact = `
   <div class="contact-info">
@@ -33,27 +34,6 @@ const contact = `
       <li>Email: <a href="mailto:blr.aviral@gmail.com">blr.aviral@gmail.com</a></li>
       <li>Social: <a href="https://www.linkedin.com/in/aviral-s-79955a119/" target="_blank">LinkedIn</a>, <a href="https://github.com/sAVItar02">Github</a></li>
     </ul>
-  </div>
-  <hr style="margin-top: 10px;">
-  <div class="contact-form">
-    <p>Or Send me a message and I'll try to get back to you ASAP!</p>
-    <form name="contact" method="POST" data-netlify="true" id="contact-form">
-      <input type="hidden" name="form-name" value="contact" />
-      <div class="form-group">
-        <label for="name-input">Name*</label>
-        <input type="text" required id="name">
-      </div>
-      <div class="form-group">
-        <label for="email-input">Email*</label>
-        <input type="email" required id="email">
-      </div>
-      <div class="form-group">
-        <label for="message-input">Message*</label>
-        <textarea id="message" rows="6" required></textarea>
-      </div>
-      <div class="form-error">Oops Looks like you left a field empty, please fill out all the fields.</div>
-      <button type="submit" class="primary-button" id="contact-form-button">Submit</button>
-    </form>
   </div>
 
   <br/>
@@ -121,44 +101,44 @@ function openUrl(url) {
 }
 
 function openContact() {
-  createWindow("Contact", contact, "Contact", 64, 40, 5);
+  createWindow("Contact", contact, "Contact", 25, 40, 5);
   // centerWindow("Contact");
 
-  document.getElementById("contact-form-button").onclick = function (e) {
-    e.preventDefault();
-    e.stopPropagation();
+  // document.getElementById("contact-form-button").onclick = function (e) {
+  //   e.preventDefault();
+  //   e.stopPropagation();
 
-    let name = document.querySelector("#name").value;
-    let email = document.querySelector("#email").value;
-    let message = document.querySelector("#message").value;
+  //   let name = document.querySelector("#name").value;
+  //   let email = document.querySelector("#email").value;
+  //   let message = document.querySelector("#message").value;
 
-    if (!name || !email || !message) {
-      document.querySelector(".form-error").style.display = "block";
-      return;
-    }
+  //   if (!name || !email || !message) {
+  //     document.querySelector(".form-error").style.display = "block";
+  //     return;
+  //   }
 
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("email", email);
-    formData.append("message", message);
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString(),
-    })
-      .then(() => {
-        createAlert(
-          "sent-alert",
-          "Alert",
-          "Your message was sent, Thank you for contacting me, I will get back to you as soon as possible",
-          20,
-          40,
-          110
-        );
-        document.querySelector("#contact-form").reset();
-      })
-      .catch((error) => alert(error));
-  };
+  //   const formData = new FormData();
+  //   formData.append("name", name);
+  //   formData.append("email", email);
+  //   formData.append("message", message);
+  //   fetch("/", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/x-www-form-urlencoded" },
+  //     body: new URLSearchParams(formData).toString(),
+  //   })
+  //     .then(() => {
+  //       createAlert(
+  //         "sent-alert",
+  //         "Alert",
+  //         "Your message was sent, Thank you for contacting me, I will get back to you as soon as possible",
+  //         20,
+  //         40,
+  //         110
+  //       );
+  //       document.querySelector("#contact-form").reset();
+  //     })
+  //     .catch((error) => alert(error));
+  // };
 }
 
 function openAbout() {

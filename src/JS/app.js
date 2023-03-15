@@ -37,8 +37,8 @@ const contact = `
   <hr style="margin-top: 10px;">
   <div class="contact-form">
     <p>Or Send me a message and I'll try to get back to you ASAP!</p>
-    <form name="contact" method="POST" data-netlify="true" onsubmit="handleSubmit" id="contact-form">
-      <input type="hidden" name="contact" value="contact" />
+    <form name="contact" method="POST" data-netlify="true" id="contact-form">
+      <input type="hidden" name="form-name" value="contact" />
       <div class="form-group">
         <label for="name-input">Name*</label>
         <input type="text" required id="name">

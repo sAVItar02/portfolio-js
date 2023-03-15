@@ -5,10 +5,39 @@ document.getElementById("root").onclick = function (e) {
   hideMenu();
 };
 
-{
-  /* <div class="contact-form">
+// {
+//   <div class="contact-form">
+//     <p>Or Send me a message and I'll try to get back to you ASAP!</p>
+//     <form>
+//       <div class="form-group">
+//         <label for="name-input">Name*</label>
+//         <input type="text" required id="name-input">
+//       </div>
+//       <div class="form-group">
+//         <label for="email-input">Email*</label>
+//         <input type="email" required id="email-input">
+//       </div>
+//       <div class="form-group">
+//         <label for="message-input">Message*</label>
+//         <textarea id="message-input" rows="6" required></textarea>
+//       </div>
+//       <button type="submit" class="primary-button" id="contact-form-button">Submit</button>
+//     </form>
+//   </div>
+// }
+
+const contact = `
+  <div class="contact-info">
+    <h4>You can reach me on: </h4>
+    <ul class="contact-list">
+      <li>Email: <a href="mailto:blr.aviral@gmail.com">blr.aviral@gmail.com</a></li>
+      <li>Social: <a href="https://www.linkedin.com/in/aviral-s-79955a119/" target="_blank">LinkedIn</a>, <a href="https://github.com/sAVItar02">Github</a></li>
+    </ul>
+  </div>
+  <hr style="margin-top: 10px;">
+  <div class="contact-form">
     <p>Or Send me a message and I'll try to get back to you ASAP!</p>
-    <form>
+    <form name="contact" method="POST" data-netlify="true">
       <div class="form-group">
         <label for="name-input">Name*</label>
         <input type="text" required id="name-input">
@@ -23,16 +52,6 @@ document.getElementById("root").onclick = function (e) {
       </div>
       <button type="submit" class="primary-button" id="contact-form-button">Submit</button>
     </form>
-  </div> */
-}
-
-const contact = `
-  <div class="contact-info">
-    <h4>You can reach me on: </h4>
-    <ul class="contact-list">
-      <li>Email: <a href="mailto:blr.aviral@gmail.com">blr.aviral@gmail.com</a></li>
-      <li>Social: <a href="https://www.linkedin.com/in/aviral-s-79955a119/" target="_blank">LinkedIn</a>, <a href="https://github.com/sAVItar02">Github</a></li>
-    </ul>
   </div>
 
   <br/>
@@ -100,7 +119,7 @@ function openUrl(url) {
 }
 
 function openContact() {
-  createWindow("Contact", contact, "Contact", 25, 40, 5);
+  createWindow("Contact", contact, "Contact", 64, 40, 5);
   // centerWindow("Contact");
 
   // document.getElementById("contact-form-button").onclick = function (e) {

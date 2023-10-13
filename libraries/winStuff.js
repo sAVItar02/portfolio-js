@@ -717,3 +717,18 @@ function createAlert(id, titleText, info, h, w, z) {
     overlay.remove();
   };
 }
+
+function createIFrame(frameId, id, src, h, w) {
+  const elem = document.getElementById(id);
+  const elemBody = elem.querySelector(".window-body");
+  if (!elem) return;
+  const frameBody = document.createElement("div");
+  frameBody.classList.add("frame-body");
+  const frame = document.createElement("iframe");
+  frame.src = src;
+  (frame.id = frameId), (frame.height = h);
+  frame.width = w;
+  elemBody.style.padding = "0px";
+  frameBody.appendChild(frame);
+  elemBody.appendChild(frameBody);
+}

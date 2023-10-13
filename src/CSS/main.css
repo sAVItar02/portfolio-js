@@ -832,6 +832,15 @@ footer {
     background-size: contain;
 }
 
+/* !------------------------- IFRAME ---------------------------------- */
+
+.frame-body {
+    background: url("./../../public/assets/loader.gif") center center no-repeat;
+    background-size: 60px;
+    height: 100%;
+    width: 100%;
+}
+
 
 /* !------------------------- MEDIA QUERIES --------------------------- */
 

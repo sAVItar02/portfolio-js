@@ -5,28 +5,6 @@ document.getElementById("root").onclick = function (e) {
   hideMenu();
 };
 
-// <hr style="margin-top: 10px;">
-//   <div class="contact-form">
-//     <p>Or Send me a message and I'll try to get back to you ASAP!</p>
-//     <form name="contact" method="POST" data-netlify="true" id="contact-form">
-//       <input type="hidden" name="form-name" value="contact" />
-//       <div class="form-group">
-//         <label for="name-input">Name*</label>
-//         <input type="text" required id="name">
-//       </div>
-//       <div class="form-group">
-//         <label for="email-input">Email*</label>
-//         <input type="email" required id="email">
-//       </div>
-//       <div class="form-group">
-//         <label for="message-input">Message*</label>
-//         <textarea id="message" rows="6" required></textarea>
-//       </div>
-//       <div class="form-error">Oops Looks like you left a field empty, please fill out all the fields.</div>
-//       <button type="submit" class="primary-button" id="contact-form-button">Submit</button>
-//     </form>
-//   </div>
-
 const contact = `
   <div class="contact-info">
     <h4>You can reach me on: </h4>
@@ -79,17 +57,18 @@ const credits = `
   </div>
   <div class="credits-container">
     <ul class="list">
-      <li class="list-item">Main Background (Landscape Gif) : <a href="https://in.pinterest.com/pin/667166132311196309/">@anasabdin</a></li>
-      <li class="list-item">Japanese City Background Gif : <a href="https://in.pinterest.com/pin/726768458635723246/">@Retronator</a></li>
-      <li class="list-item">Night City Background Gif : <a href="https://in.pinterest.com/pin/726768458635317793/">@Aliciel</a></li>
-      <li class="list-item">Factory Background Gif : <a href="https://in.pinterest.com/pin/726768458635723269/">@A Cidade Branca</a></li>
-      <li class="list-item">About Image : <a href="https://in.pinterest.com/pin/366621225903655441/">@leeoccleshaw</a></li>
-      <li class="list-item">Github Icon : <a href="http://pixelartmaker.com/art/d7e4e1e509c728d">Pixel Art Maker</a></li>
-      <li class="list-item">Settings Icon : <a href="http://pixelartmaker.com/art/ac6c0486a959d41">Pixel Art Maker</a></li>
-      <li class="list-item">Cookie Image : <a href="http://pixelartmaker.com/art/8d93c7834a63bf9">Pixel Art Maker</a></li>
-      <li class="list-item">Font : <a href="https://github.com/blobject/agave">Agave</a></li>
-      <li class="list-item">Battery Icon : <a href="https://fontawesome.com/search?q=battery&o=r">Fontawesome</a></li>
-      <li class="list-item">Design Credits : <a href="https://jewelcodes.io/">@jewelcodes</a></li>
+      <li class="list-item">Main Background (Landscape Gif) : <a target="_blank" href="https://in.pinterest.com/pin/667166132311196309/">@anasabdin</a></li>
+      <li class="list-item">Japanese City Background Gif : <a target="_blank" href="https://in.pinterest.com/pin/726768458635723246/">@Retronator</a></li>
+      <li class="list-item">Night City Background Gif : <a target="_blank" href="https://in.pinterest.com/pin/726768458635317793/">@Aliciel</a></li>
+      <li class="list-item">Factory Background Gif : <a target="_blank" href="https://in.pinterest.com/pin/726768458635723269/">@A Cidade Branca</a></li>
+      <li class="list-item">Hourglass Loader Gif : <a target="_blank" href="https://giphy.com/stickers/transparent-aYKTYtCYb2ECSKfyal">@paperpixelco</a></li>
+      <li class="list-item">About Image : <a target="_blank" href="https://in.pinterest.com/pin/366621225903655441/">@leeoccleshaw</a></li>
+      <li class="list-item">Github Icon : <a target="_blank" href="http://pixelartmaker.com/art/d7e4e1e509c728d">Pixel Art Maker</a></li>
+      <li class="list-item">Settings Icon : <a target="_blank" href="http://pixelartmaker.com/art/ac6c0486a959d41">Pixel Art Maker</a></li>
+      <li class="list-item">Cookie Image : <a target="_blank" href="http://pixelartmaker.com/art/8d93c7834a63bf9">Pixel Art Maker</a></li>
+      <li class="list-item">Font : <a target="_blank" href="https://github.com/blobject/agave">Agave</a></li>
+      <li class="list-item">Battery Icon : <a target="_blank" href="https://fontawesome.com/search?q=battery&o=r">Fontawesome</a></li>
+      <li class="list-item">Design Credits : <a target="_blank" href="https://jewelcodes.io/">@jewelcodes</a></li>
     </ul>
   </div>
 `;
@@ -203,14 +182,22 @@ function openCredits() {
   createWindow("Credits", credits, "Credits", 50, 30, 5);
 }
 
+function openResume() {
+  createWindow("Resume", "", "Resume", 80, 50, 5);
+  createIFrame(
+    "ResumeFrame",
+    "Resume",
+    "https://drive.google.com/file/d/10F4z3GeF8h1Jh1eHkQmMvvVpSisNMKRf/preview",
+    "100%",
+    "100%"
+  );
+  centerWindow("Resume");
+}
+
 window.onload = function () {
   createTaskBar();
   appendMenuElement("About", openAbout);
-  appendMenuElement("Resume", function () {
-    return openUrl(
-      "https://drive.google.com/file/d/10F4z3GeF8h1Jh1eHkQmMvvVpSisNMKRf/view?usp=sharing"
-    );
-  });
+  appendMenuElement("Resume", openResume);
   appendMenuElement("Settings", openSettings);
   appendMenuElement("Credits", openCredits);
   getBattery();
@@ -251,11 +238,7 @@ window.onload = function () {
     "Resume",
     120,
     120,
-    function () {
-      return openUrl(
-        "https://drive.google.com/file/d/10F4z3GeF8h1Jh1eHkQmMvvVpSisNMKRf/view?usp=sharing"
-      );
-    }
+    openResume
   );
 
   createDesktopApp(

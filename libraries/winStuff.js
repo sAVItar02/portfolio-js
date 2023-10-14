@@ -400,6 +400,9 @@ function createSettings(id, imgs, noticeText) {
   inputEnable.value = "enable";
   inputEnable.name = "audio";
   inputEnable.id = "enable";
+  if (getCookie("audio") == "true") {
+    inputEnable.checked = "true";
+  }
   inputEnable.onclick = function (e) {
     e.preventDefault();
     e.stopImmediatePropagation();
@@ -425,7 +428,9 @@ function createSettings(id, imgs, noticeText) {
   inputDisable.value = "disable";
   inputDisable.name = "audio";
   inputDisable.type = "radio";
-  inputDisable.checked = "true";
+  if (getCookie("audio") == "false") {
+    inputDisable.checked = "true";
+  }
   inputDisable.onclick = function (e) {
     e.preventDefault();
     e.stopImmediatePropagation();
@@ -450,36 +455,11 @@ function createSettings(id, imgs, noticeText) {
   settings.appendChild(wallpaperContainer);
   settings.appendChild(audioBuffer);
 
-  // const apply = document.createElement("button");
-  // apply.type = "button";
-  // apply.id = "apply-settings";
-  // apply.innerText = "Apply";
-  // apply.classList.add("primary-button");
-
   settings.appendChild(document.createElement("hr"));
-  // settings.appendChild(apply);
 
   if (document.getElementById(id).children[1].children.length == 0) {
     document.getElementById(id).children[1].appendChild(settings);
   }
-
-  // apply.onclick = function (e) {
-  //   e.preventDefault();
-  //   e.stopImmediatePropagation();
-
-  //   let audio = document.querySelector("input[name='audio']:checked").value;
-  //   if (audio == "enable") {
-  //     setCookie("audio", true, 30);
-  //   } else {
-  //     setCookie("audio", false, 30);
-  //   }
-
-  //   let wallpaper = document.querySelector("input[name='wallpaper']:checked");
-  //   if (wallpaper) {
-  //     setCookie("wallpaper", wallpaper.value, 30);
-  //     changeWallpaper(wallpaper.value);
-  //   }
-  // };
 }
 
 /**

@@ -3,6 +3,7 @@
 */
 document.getElementById("root").onclick = function (e) {
   hideMenu();
+  hideContextMenu();
 };
 
 const contact = `
@@ -81,43 +82,6 @@ function openUrl(url) {
 
 function openContact() {
   createWindow("Contact", contact, "Contact", 25, 40, 5);
-  // centerWindow("Contact");
-
-  // document.getElementById("contact-form-button").onclick = function (e) {
-  //   e.preventDefault();
-  //   e.stopPropagation();
-
-  //   let name = document.querySelector("#name").value;
-  //   let email = document.querySelector("#email").value;
-  //   let message = document.querySelector("#message").value;
-
-  //   if (!name || !email || !message) {
-  //     document.querySelector(".form-error").style.display = "block";
-  //     return;
-  //   }
-
-  //   const formData = new FormData();
-  //   formData.append("name", name);
-  //   formData.append("email", email);
-  //   formData.append("message", message);
-  //   fetch("/", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-  //     body: new URLSearchParams(formData).toString(),
-  //   })
-  //     .then(() => {
-  //       createAlert(
-  //         "sent-alert",
-  //         "Alert",
-  //         "Your message was sent, Thank you for contacting me, I will get back to you as soon as possible",
-  //         20,
-  //         40,
-  //         110
-  //       );
-  //       document.querySelector("#contact-form").reset();
-  //     })
-  //     .catch((error) => alert(error));
-  // };
 }
 
 function openAbout() {
@@ -196,10 +160,10 @@ function openResume() {
 
 window.onload = function () {
   createTaskBar();
-  appendMenuElement("About", openAbout);
-  appendMenuElement("Resume", openResume);
-  appendMenuElement("Settings", openSettings);
-  appendMenuElement("Credits", openCredits);
+  appendMenuElement("menu", "About", openAbout);
+  appendMenuElement("menu", "Resume", openResume);
+  appendMenuElement("menu", "Settings", openSettings);
+  appendMenuElement("menu", "Credits", openCredits);
   getBattery();
   getTime24();
 
@@ -219,6 +183,27 @@ window.onload = function () {
 
   window.onmousemove = function (e) {
     handleDrag(e, windowToDrag);
+  };
+
+  document.body.oncontextmenu = function (e) {
+    hideMenu();
+    if (e.srcElement.id != "root") return;
+    e.preventDefault();
+    openContextMenu(e, 195, 200);
+    appendMenuElement("context-menu", "Refresh", function () {
+      window.location.reload();
+    });
+    appendMenuElement("context-menu", "About", openAbout);
+    appendMenuElement("context-menu", "Resume", openResume);
+    appendMenuElement("context-menu", "Contact", openContact);
+    appendMenuElement("context-menu", "Settings", openSettings);
+
+    document
+      .getElementById("context-menu")
+      .addEventListener("click", function (e) {
+        hideContextMenu();
+        hideMenu();
+      });
   };
 
   createDesktopApp(

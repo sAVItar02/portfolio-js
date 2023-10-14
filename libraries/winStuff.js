@@ -48,8 +48,8 @@ function changeWallpaper(name) {
  * @param {String} text - Heading which is supposed to appear as the menu item text
  * @param {function} handler - Handler fucntion which runs upon the menu item click
  */
-function appendMenuElement(text, handler) {
-  const menu = document.getElementById("menu");
+function appendMenuElement(id, text, handler) {
+  const menu = document.getElementById(id);
 
   const menuItem = document.createElement("li");
   menuItem.classList.add("menu-item");
@@ -88,6 +88,11 @@ function toggleMenu() {
 function hideMenu() {
   document.getElementById("menu").style.display = "none";
   document.getElementById("menuButton").classList.remove("active");
+}
+
+function hideContextMenu() {
+  if (document.getElementById("context-menu"))
+    document.getElementById("context-menu").remove();
 }
 
 /**
@@ -360,7 +365,6 @@ function createSettings(id, imgs, noticeText) {
     input.value = `${img[1]}`;
     input.name = "wallpaper";
     input.onclick = function (e) {
-      console.log("Hello");
       e.preventDefault();
       e.stopImmediatePropagation();
       setCookie("wallpaper", `${img[1]}`, 30);
@@ -507,6 +511,12 @@ function createTaskBar() {
     playClick();
   };
 
+  taskbar.onclick = function (e) {
+    if (e.target.id === "menuButton") return;
+    hideMenu();
+    hideContextMenu();
+  };
+
   taskbar.appendChild(buttonContainer);
   taskbar.appendChild(batteryTimeContainer);
 
@@ -536,11 +546,11 @@ function createWindow(id, text, titleText, h, w, z = 1, imgs) {
   windowCount++;
 
   // !---------- BSOD EASTER EGG ---------------
-  if (windowCount >= 5) {
-    // setTimeout(showBSOD, 3000);
-  }
+  // if (windowCount >= 5) {
+  // setTimeout(showBSOD, 3000);
+  // }
 
-  console.log(windowCount);
+  // console.log(windowCount);
   // !------------------------------------------
 
   const currentWindowId = id;
@@ -581,6 +591,8 @@ function createWindow(id, text, titleText, h, w, z = 1, imgs) {
     e.stopImmediatePropagation();
     // setActiveWindow(win, wTaskbarButton);
     showWindow(currentWindowId, wTaskbarButton);
+    hideMenu();
+    hideContextMenu();
   };
 
   wClose.onclick = function (e) {
@@ -593,7 +605,9 @@ function createWindow(id, text, titleText, h, w, z = 1, imgs) {
     windowToDrag = win;
   };
 
-  wTaskbarButton.onclick = function () {
+  wTaskbarButton.onclick = function (e) {
+    e.stopImmediatePropagation();
+    e.stopPropagation();
     toggleWindow(currentWindowId, wTaskbarButton);
     playClick();
   };
@@ -731,4 +745,42 @@ function createIFrame(frameId, id, src, h, w) {
   elemBody.style.padding = "0px";
   frameBody.appendChild(frame);
   elemBody.appendChild(frameBody);
+}
+
+function returnRightClickCords(e, contextMenu, h, w) {
+  let x, y, cordsX, cordsY;
+
+  x = w;
+  y = h;
+
+  cordsX = e.clientX;
+  cordsY = e.clientY;
+
+  let maxX = window.innerWidth;
+  let maxY = window.innerHeight;
+
+  if (maxX - e.clientX <= x) {
+    cordsX = e.clientX - x;
+    cordsY = e.clientY;
+  }
+  if (maxY - e.clientY <= y) {
+    cordsY = e.clientY - y;
+    cordsX = e.clientX;
+  }
+  return { cordsX, cordsY };
+}
+
+function openContextMenu(e, h, w) {
+  if (document.getElementById("context-menu"))
+    document.getElementById("context-menu").remove();
+  const menu = document.createElement("ul");
+  menu.id = "context-menu";
+  menu.style.height = `${h}px`;
+  menu.style.width = `${w}px`;
+  menu.style.minHeight = "100px";
+  menu.style.zIndex = 20;
+  const cords = returnRightClickCords(e, menu, h, w);
+  menu.style.left = `${cords.cordsX}px`;
+  menu.style.top = `${cords.cordsY}px`;
+  document.body.appendChild(menu);
 }

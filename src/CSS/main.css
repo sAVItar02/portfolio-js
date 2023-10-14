@@ -309,6 +309,7 @@ img {
     justify-content: space-between;
     align-items: center;
     padding: 0 2px;
+    box-shadow: 0 0 5px var(--window-shadow-color);
 }
 
 #buttonContainer, #batteryTimeContainer {
@@ -361,6 +362,7 @@ img {
     font-size: 1.7rem;
     font-family: agave-bold, monospace;
     cursor: pointer;
+    pointer-events: all;
 }
 
 #menuButton.active, .taskbar-btn.active {
@@ -384,17 +386,18 @@ img {
     border-right: 2px solid var(--menuButton-border-bottom);
 }
 
-#menu li {
+#menu li, #context-menu li {
     padding: 10px;
     font-size: 1.6rem;
     border-bottom: 1px solid var(--menuButton-border-bottom);
+    list-style: none;
 }
 
-#menu li:last-child {
+#menu li:last-child, #context-menu li:last-child {
     border-bottom: none;
 }
 
-#menu li:hover {
+#menu li:hover, #context-menu li:hover {
     background-color: var(--menu-hover);
 }
 
@@ -841,6 +844,16 @@ footer {
     width: 100%;
 }
 
+
+/* !------------------------- CONTEXT MENU -----------------------------*/
+
+#context-menu {
+    position: absolute;
+    background-color: var(--taskbar-bg);
+    border: 2px solid var(--menuButton-border-top);
+    border-bottom: 2px solid var(--menuButton-border-bottom);
+    border-right: 2px solid var(--menuButton-border-bottom);
+}
 
 /* !------------------------- MEDIA QUERIES --------------------------- */
 

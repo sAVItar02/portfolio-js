@@ -400,9 +400,7 @@ function createSettings(id, imgs, noticeText) {
   inputEnable.value = "enable";
   inputEnable.name = "audio";
   inputEnable.id = "enable";
-  if (getCookie("audio") == "true") {
-    inputEnable.checked = "true";
-  }
+  inputEnable.checked = "true";
   inputEnable.onclick = function (e) {
     e.preventDefault();
     e.stopImmediatePropagation();

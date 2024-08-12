@@ -293,6 +293,10 @@ img {
     font-family: agave-bold, monospace;
 }
 
+.hr-block {
+    display: block;
+}
+
 /* !-------------------------------------------------------------------- */
 
 #taskbar {
@@ -559,6 +563,8 @@ img {
     margin-bottom: 10px;
 }
 
+/* !------------------- ABOUT ---------------------- */
+
 .about-container > hr {
     margin-top: 30px;
 }
@@ -573,7 +579,6 @@ img {
 
 .about-tech {
     margin-top: 20px;
-    margin-bottom: 100px;
 }
 
 .about-tech-list-1, .about-tech-list-2 {
@@ -583,6 +588,14 @@ img {
 
 .about-focus > p {
     line-height: 1.1;
+}
+
+.about-tech-list-buffer {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 footer {

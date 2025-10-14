@@ -78,11 +78,11 @@ function openCredits() {
 }
 
 function openResume() {
-  createWindow("Resume", "", "Resume", 80, 50, 5);
+  createWindow("Resume", downloadResume, "Resume", 80, 50, 5);
   createIFrame(
     "ResumeFrame",
     "Resume",
-    "https://drive.google.com/file/d/10F4z3GeF8h1Jh1eHkQmMvvVpSisNMKRf/preview",
+    "https://drive.google.com/file/d/16OrghCN_efV1czGBYGoBVSdjiJbzOU4Z/preview",
     "100%",
     "100%"
   );

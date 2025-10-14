@@ -18,20 +18,31 @@ const about = `
       <img src="./../../public/assets/about-img.jfif" alt="About Image"/>
     </div>
     <div class="about-focus">
-      <p class="fw-bold">Hi, I'm Aviral 😄</p>
-      <p>I'm a 22-year-old Web Developer living in <a href="https://en.wikipedia.org/wiki/Bangalore">Bengaluru</a></p>
-      <p>I enjoy building pages that live on the web, my interest in web development started back in 2019 when i took a <a href="https://www.udemy.com/course/the-web-developer-bootcamp/" target="_blank">Web Development Course</a> out of curiosity and ended up learning a lot about the web.</p>
+  <p class="fw-bold">Hey there! I'm Aviral 😄</p>
 
-      <p>
-        After gaining valuable experience through internships at 
-        <a href="https://www.linkedin.com/company/ultrainstinct-ai/" target="_blank">UltraInstinct</a>, 
-        <a href="https://www.linkedin.com/company/ascendance-st/mycompany/" target="_blank">Ascendance</a>, and 
-        <a href="https://www.eurofins.in/eitsi/" target="_blank">Eurofins</a>, I focused on Intelligent Automation, chatbots, and building web interfaces for chatbots in React during my time at 
-        <a href="https://www.linkedin.com/company/pwc-india/" target="_blank">PwC</a>.
-        I have now embarked on the next chapter of my journey, pursuing a Master’s degree in Computer Science at 
-        <a href="https://www.ucdavis.edu" target="_blank">University of California, Davis</a>.
-      </p>
-    </div>
+  <p>I'm a 23-year-old web developer from 
+    <a href="https://en.wikipedia.org/wiki/Bangalore" target="_blank">Bengaluru</a>, 
+    now exploring new horizons at the 
+    <a href="https://www.ucdavis.edu" target="_blank">University of California, Davis</a>, 
+    where I’m pursuing my Master’s in Computer Science.
+  </p>
+
+  <p>
+    My love for the web started back in 2019 when I took a 
+    <a href="https://www.udemy.com/course/the-web-developer-bootcamp/" target="_blank">web development course</a> 
+    out of pure curiosity, and fell down the rabbit hole of code, design, and endless possibilities. 
+    Since then, I’ve built and broken (and rebuilt!) countless things on the web, interned at 
+    <a href="https://www.linkedin.com/company/ultrainstinct-ai/" target="_blank">UltraInstinct</a>, 
+    <a href="https://www.linkedin.com/company/eurofins/" target="_blank">Eurofins</a>, and 
+    <a href="https://www.linkedin.com/company/pwc-india/" target="_blank">PwC</a>, 
+    and worked on everything from chatbots and intelligent automation to clean, responsive interfaces built with React.
+  </p>
+
+  <p>
+    These days, you’ll find me experimenting with new ideas, learning something cool, or just chasing that perfect mix of 
+    <strong>functionality</strong> and <strong>creativity</strong> on the web.
+  </p>
+</div>
     <hr>
     <div class="about-tech">
       <p class="fw-bold">Few technologies I've been working with recently: </p>
@@ -78,3 +89,9 @@ const credits = `
 `;
 
 const noticeText = `<img class="notice-img" src="./../../public/assets/cookie.png" alt="cookie image"/> <div>This website uses cookies to deliver the best possible experience, by changing any settings you consent to using cookies.</div>`;
+
+const downloadResume = `
+  <div class="download-resume-container">
+    <a href="https://drive.google.com/uc?export=download&id=16OrghCN_efV1czGBYGoBVSdjiJbzOU4Z" target="_blank" class="download-resume-link">Download</a>
+  </div>
+`;

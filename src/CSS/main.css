@@ -857,6 +857,30 @@ footer {
     width: 100%;
 }
 
+.download-resume-container {
+    position: absolute;
+    top: 3rem;
+    left: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.download-resume-link {
+    padding: 5px 15px;
+    background-color: var(--menuButton-bg);
+    border: 2px solid var(--menuButton-border-top);
+    border-bottom: 2px solid var(--menuButton-border-bottom);
+    border-right: 2px solid var(--menuButton-border-bottom);
+    font-size: 1.25rem;
+    font-family: agave-bold, monospace;
+    cursor: pointer;
+    pointer-events: all;
+    color: var(--normal-text-dark);
+    text-decoration: none;
+}
+
+
 
 /* !------------------------- CONTEXT MENU -----------------------------*/
 

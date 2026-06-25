@@ -20,11 +20,15 @@ const about = `
     <div class="about-focus">
   <p class="fw-bold">Hey there! I'm Aviral 😄</p>
 
-  <p>I'm a 23-year-old web developer from 
+  <p>I'm a 24-year-old web developer from 
     <a href="https://en.wikipedia.org/wiki/Bangalore" target="_blank">Bengaluru</a>, 
     now exploring new horizons at the 
     <a href="https://www.ucdavis.edu" target="_blank">University of California, Davis</a>, 
     where I’m pursuing my Master’s in Computer Science.
+  </p>
+
+  <p>
+    I'm a 24-year-old developer from <a href="https://en.wikipedia.org/wiki/Bangalore" target="_blank">Bengaluru</a>, India, currently pursuing my Master's in Computer Science at the <a href="https://www.ucdavis.edu" target="_blank">University of California, Davis</a>. After two years of professional experience in software development, I've continued my journey through research, side projects, and hands-on engineering. This summer, I'm a Software Engineering Intern at <a href="https://www.esri.com/en-us/home">ESRI</a>, where I'm helping build web-based geospatial technologies while learning from talented engineers and exploring new frontiers in software development.
   </p>
 
   <p>

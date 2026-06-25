@@ -82,7 +82,7 @@ function openResume() {
   createIFrame(
     "ResumeFrame",
     "Resume",
-    "https://drive.google.com/file/d/16OrghCN_efV1czGBYGoBVSdjiJbzOU4Z/preview",
+    "https://drive.google.com/file/d/1YHcybNlsomrcjBHCbVahwriGrTPkqxas/preview",
     "100%",
     "100%"
   );
